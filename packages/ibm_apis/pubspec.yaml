@@ -11,6 +11,7 @@ dependencies:
   built_value: ^8.0.6
   built_collection: ^5.0.0
 
+# pub run build_runner build --delete-conflicting-outputs
 dev_dependencies:
   built_value_generator: ^8.0.6
-  build_runner: ^2.0.3
+  build_runner: ^2.0.4
