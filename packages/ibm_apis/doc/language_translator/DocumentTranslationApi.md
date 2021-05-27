@@ -2,7 +2,7 @@
 
 ## Load the API package
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 ```
 
 All URIs are relative to *https://api.us-south.language-translator.watson.cloud.ibm.com*
@@ -25,7 +25,7 @@ Deletes a document
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -73,7 +73,7 @@ Gets the translation status of a document
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -122,7 +122,7 @@ Gets the translated document associated with the given document ID
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -171,7 +171,7 @@ Lists documents that have been submitted for translation
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -218,7 +218,7 @@ Submit a document for translation. You can submit the document contents in the `
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

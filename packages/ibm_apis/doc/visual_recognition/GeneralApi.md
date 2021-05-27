@@ -2,7 +2,7 @@
 
 ## Load the API package
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 ```
 
 All URIs are relative to *https://api.us-south.visual-recognition.watson.cloud.ibm.com*
@@ -22,7 +22,7 @@ Classify images with built-in or custom classifiers.
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -81,7 +81,7 @@ Classify an image with the built-in or custom classifiers.
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

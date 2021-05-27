@@ -2,7 +2,7 @@
 
 ## Load the API package
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 ```
 
 All URIs are relative to *https://api.us-south.visual-recognition.watson.cloud.ibm.com*
@@ -25,7 +25,7 @@ Train a new multi-faceted classifier on the uploaded image data. Create your cus
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -76,7 +76,7 @@ Delete a classifier
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -125,7 +125,7 @@ Retrieve information about a custom classifier.
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -172,7 +172,7 @@ Retrieve a list of classifiers
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -221,7 +221,7 @@ Update a custom classifier by adding new positive or negative classes or by addi
 
 ### Example 
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

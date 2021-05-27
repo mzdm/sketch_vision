@@ -2,7 +2,7 @@
 
 ## Load the model package
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 ```
 
 ## Properties

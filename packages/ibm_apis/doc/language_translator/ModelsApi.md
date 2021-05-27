@@ -2,7 +2,7 @@
 
 ## Load the API package
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 ```
 
 All URIs are relative to *https://api.us-south.language-translator.watson.cloud.ibm.com*
@@ -24,7 +24,7 @@ Uploads training files to customize a translation model. You can customize a mod
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -79,7 +79,7 @@ Deletes a custom translation model.
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -128,7 +128,7 @@ Gets information about a translation model, including training status for custom
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -177,7 +177,7 @@ Lists available translation models.
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

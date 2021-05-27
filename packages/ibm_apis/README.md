@@ -1,6 +1,4 @@
-# ibm_apis
-
-IBM Cloud APIs
+# IBM Cloud APIs
 
 - **[Visual Recognition V3](#documentation-for-visual-recognition)**
 
@@ -112,7 +110,6 @@ Class | Method | HTTP request | Description
 
 
 ## Documentation For Authorization
-
 
 ## IAM
 

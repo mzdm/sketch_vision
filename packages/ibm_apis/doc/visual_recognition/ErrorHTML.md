@@ -2,7 +2,7 @@
 
 ## Load the model package
 ```dart
-import 'package:ibm_apis/ibm_apis.dart';
+import 'package:ibm_apis/visual_recognition.dart';
 ```
 
 ## Properties

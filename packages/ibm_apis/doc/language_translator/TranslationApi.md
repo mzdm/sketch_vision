@@ -2,7 +2,7 @@
 
 ## Load the API package
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 ```
 
 All URIs are relative to *https://api.us-south.language-translator.watson.cloud.ibm.com*
@@ -21,7 +21,7 @@ Translates the input text from the source language to the target language. Speci
 
 ### Example 
 ```dart
-import 'package:ibm_language_translator/api.dart';
+import 'package:ibm_apis/language_translator.dart';
 // TODO Configure API key authorization: IAM
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
