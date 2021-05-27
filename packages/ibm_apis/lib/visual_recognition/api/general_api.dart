@@ -10,8 +10,6 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ibm_apis/visual_recognition/api_util.dart';
 import 'package:ibm_apis/visual_recognition/model/classified_images.dart';
-import 'package:ibm_apis/visual_recognition/model/error_html.dart';
-import 'package:ibm_apis/visual_recognition/model/error_response.dart';
 
 class GeneralApi {
 

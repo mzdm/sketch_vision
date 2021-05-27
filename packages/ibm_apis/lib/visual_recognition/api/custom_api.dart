@@ -11,9 +11,6 @@ import 'package:built_value/json_object.dart';
 import 'package:ibm_apis/visual_recognition/api_util.dart';
 import 'package:ibm_apis/visual_recognition/model/classifier.dart';
 import 'package:ibm_apis/visual_recognition/model/classifiers.dart';
-import 'package:ibm_apis/visual_recognition/model/error_html.dart';
-import 'package:ibm_apis/visual_recognition/model/error_info.dart';
-import 'package:ibm_apis/visual_recognition/model/error_response.dart';
 
 class CustomApi {
 

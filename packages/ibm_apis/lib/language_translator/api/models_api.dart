@@ -7,9 +7,7 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:ibm_apis/language_translator/api_util.dart';
 import 'package:ibm_apis/language_translator/model/delete_model_result.dart';
-import 'package:ibm_apis/language_translator/model/error_response.dart';
 import 'package:ibm_apis/language_translator/model/translation_model.dart';
 import 'package:ibm_apis/language_translator/model/translation_models.dart';
 

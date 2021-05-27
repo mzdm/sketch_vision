@@ -8,13 +8,11 @@ import 'dart:typed_data';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:ibm_apis/visual_recognition/model/error_info.dart';
-import 'package:ibm_apis/visual_recognition/model/error_response.dart';
-
 class CoreMLApi {
 
   final Dio _dio;
 
+  // ignore: unused_field
   final Serializers _serializers;
 
   const CoreMLApi(this._dio, this._serializers);
@@ -34,7 +32,7 @@ class CoreMLApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Uint8List] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<Response<Uint8List>> getCoreMlModel({ 
+  Future<Response<Uint8List>> getCoreMlModel({
     required String version,
     required String classifierId,
     CancelToken? cancelToken,

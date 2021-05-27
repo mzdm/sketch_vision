@@ -7,7 +7,6 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:ibm_apis/language_translator/model/error_response.dart';
 import 'package:ibm_apis/language_translator/model/languages.dart';
 
 class LanguagesApi {

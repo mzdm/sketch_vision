@@ -11,7 +11,6 @@ import 'package:dio/dio.dart';
 import 'package:ibm_apis/language_translator/api_util.dart';
 import 'package:ibm_apis/language_translator/model/document_list.dart';
 import 'package:ibm_apis/language_translator/model/document_status.dart';
-import 'package:ibm_apis/language_translator/model/error_response.dart';
 
 class DocumentTranslationApi {
 

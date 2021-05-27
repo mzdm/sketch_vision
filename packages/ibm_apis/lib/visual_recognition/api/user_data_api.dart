@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_value/json_object.dart';
-import 'package:ibm_apis/visual_recognition/model/error_response.dart';
 
 class UserDataApi {
 
