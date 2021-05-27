@@ -7,8 +7,10 @@ import 'package:built_value/serializer.dart';
 
 part 'error_html.g.dart';
 
-
-
+/// Error information.
+///
+/// Properties:
+/// * [error] - HTML description of the error.
 abstract class ErrorHTML implements Built<ErrorHTML, ErrorHTMLBuilder> {
     /// HTML description of the error.
     @BuiltValueField(wireName: r'Error')

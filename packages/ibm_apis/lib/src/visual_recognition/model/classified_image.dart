@@ -10,8 +10,14 @@ import 'package:built_value/serializer.dart';
 
 part 'classified_image.g.dart';
 
-
-
+/// Results for one image.
+///
+/// Properties:
+/// * [sourceUrl] - Source of the image before any redirects. Not returned when the image is uploaded.
+/// * [resolvedUrl] - Fully resolved URL of the image after redirects are followed. Not returned when the image is uploaded.
+/// * [image] - Relative path of the image file if uploaded directly. Not returned when the image is passed by URL.
+/// * [error] 
+/// * [classifiers] - The classifiers
 abstract class ClassifiedImage implements Built<ClassifiedImage, ClassifiedImageBuilder> {
     /// Source of the image before any redirects. Not returned when the image is uploaded.
     @BuiltValueField(wireName: r'source_url')

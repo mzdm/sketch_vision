@@ -19,8 +19,20 @@ class UserDataApi {
   const UserDataApi(this._dio, this._serializers);
 
   /// Delete labeled data
+  /// Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the &#x60;X-Watson-Metadata&#x60; header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://cloud.ibm.com/docs/visual-recognition?topic&#x3D;visual-recognition-information-security).
   ///
-  /// Deletes all data associated with a specified customer ID. The method has no effect if no data is associated with the customer ID.   You associate a customer ID with data by passing the `X-Watson-Metadata` header with a request that passes data. For more information about personal data and customer IDs, see [Information security](https://cloud.ibm.com/docs/visual-recognition?topic=visual-recognition-information-security).
+  /// Parameters:
+  /// * [version] - Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+  /// * [customerId] - The customer ID for which all data is to be deleted.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [JsonObject] as data
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<JsonObject>> deleteUserData({ 
     required String version,
     required String customerId,
@@ -48,9 +60,6 @@ class UserDataApi {
         ],
         ...?extra,
       },
-      contentType: [
-        'application/json',
-      ].first,
       validateStatus: validateStatus,
     );
 
@@ -77,13 +86,13 @@ class UserDataApi {
         specifiedType: _responseType,
       ) as JsonObject;
 
-    } catch (error) {
+    } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
         type: DioErrorType.other,
         error: error,
-      );
+      )..stackTrace = stackTrace;
     }
 
     return Response<JsonObject>(

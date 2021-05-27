@@ -3,11 +3,11 @@
 //
 
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'dart:typed_data';
 import 'package:ibm_apis/src/visual_recognition/model/error_info.dart';
 import 'package:ibm_apis/src/visual_recognition/model/error_response.dart';
 
@@ -20,8 +20,20 @@ class CoreMLApi {
   const CoreMLApi(this._dio, this._serializers);
 
   /// Retrieve a Core ML model of a classifier
+  /// Download a Core ML model file (.mlmodel) of a custom classifier that returns &lt;tt&gt;\&quot;core_ml_enabled\&quot;: true&lt;/tt&gt; in the classifier details.
   ///
-  /// Download a Core ML model file (.mlmodel) of a custom classifier that returns <tt>\"core_ml_enabled\": true</tt> in the classifier details.
+  /// Parameters:
+  /// * [version] - Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+  /// * [classifierId] - The ID of the classifier.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [Uint8List] as data
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<Uint8List>> getCoreMlModel({ 
     required String version,
     required String classifierId,
@@ -50,9 +62,6 @@ class CoreMLApi {
         ],
         ...?extra,
       },
-      contentType: [
-        'application/json',
-      ].first,
       validateStatus: validateStatus,
     );
 
@@ -74,13 +83,13 @@ class CoreMLApi {
     try {
       _responseData = _response.data as Uint8List;
 
-    } catch (error) {
+    } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
         type: DioErrorType.other,
         error: error,
-      );
+      )..stackTrace = stackTrace;
     }
 
     return Response<Uint8List>(

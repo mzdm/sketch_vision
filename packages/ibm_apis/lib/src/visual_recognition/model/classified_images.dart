@@ -10,8 +10,13 @@ import 'package:built_value/serializer.dart';
 
 part 'classified_images.g.dart';
 
-
-
+/// Results for all images.
+///
+/// Properties:
+/// * [customClasses] - Number of custom classes identified in the images.
+/// * [imagesProcessed] - Number of images processed for the API call.
+/// * [images] - Classified images.
+/// * [warnings] - Information about what might cause less than optimal output. For example, a request sent with a corrupt .zip file and a list of image URLs will still complete, but does not return the expected output. Not returned when there is no warning.
 abstract class ClassifiedImages implements Built<ClassifiedImages, ClassifiedImagesBuilder> {
     /// Number of custom classes identified in the images.
     @BuiltValueField(wireName: r'custom_classes')

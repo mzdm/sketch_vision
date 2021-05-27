@@ -1,4 +1,4 @@
-# visual_recognition.model.WarningInfo
+# ibm_visual_recognition.model.WarningInfo
 
 ## Load the model package
 ```dart

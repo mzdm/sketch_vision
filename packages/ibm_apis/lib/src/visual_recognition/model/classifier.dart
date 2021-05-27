@@ -9,8 +9,19 @@ import 'package:built_value/serializer.dart';
 
 part 'classifier.g.dart';
 
-
-
+/// Information about a classifier.
+///
+/// Properties:
+/// * [classifierId] - ID of a classifier identified in the image.
+/// * [name] - Name of the classifier.
+/// * [owner] - Unique ID of the account who owns the classifier. Might not be returned by some requests.
+/// * [status] - Training status of classifier.
+/// * [coreMlEnabled] - Whether the classifier can be downloaded as a Core ML model after the training status is `ready`.
+/// * [explanation] - If classifier training has failed, this field might explain why.
+/// * [created] - Date and time in Coordinated Universal Time (UTC) that the classifier was created.
+/// * [classes] - Classes that define a classifier.
+/// * [retrained] - Date and time in Coordinated Universal Time (UTC) that the classifier was updated. Might not be returned by some requests. Identical to `updated` and retained for backward compatibility.
+/// * [updated] - Date and time in Coordinated Universal Time (UTC) that the classifier was most recently updated. The field matches either `retrained` or `created`. Might not be returned by some requests.
 abstract class Classifier implements Built<Classifier, ClassifierBuilder> {
     /// ID of a classifier identified in the image.
     @BuiltValueField(wireName: r'classifier_id')

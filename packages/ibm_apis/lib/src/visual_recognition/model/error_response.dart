@@ -7,8 +7,11 @@ import 'package:built_value/serializer.dart';
 
 part 'error_response.g.dart';
 
-
-
+/// Error information.
+///
+/// Properties:
+/// * [code] - HTTP error code.
+/// * [error] - Human-readable error string, like 'Invalid image file'.
 abstract class ErrorResponse implements Built<ErrorResponse, ErrorResponseBuilder> {
     /// HTTP error code.
     @BuiltValueField(wireName: r'code')

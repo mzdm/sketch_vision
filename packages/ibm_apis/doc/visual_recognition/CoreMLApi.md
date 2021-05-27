@@ -1,4 +1,4 @@
-# visual_recognition.api.CoreMLApi
+# ibm_visual_recognition.api.CoreMLApi
 
 ## Load the API package
 ```dart
@@ -9,7 +9,7 @@ All URIs are relative to *https://api.us-south.visual-recognition.watson.cloud.i
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCoreMlModel**](CoreMLApi.md#getcoremlmodel) | **get** /v3/classifiers/{classifier_id}/core_ml_model | Retrieve a Core ML model of a classifier
+[**getCoreMlModel**](CoreMLApi.md#getcoremlmodel) | **GET** /v3/classifiers/{classifier_id}/core_ml_model | Retrieve a Core ML model of a classifier
 
 
 # **getCoreMlModel**
@@ -27,14 +27,14 @@ import 'package:ibm_apis/ibm_apis.dart';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKeyPrefix = 'Bearer';
 
-var api_instance = new CoreMLApi();
-var version = version_example; // String | Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
-var classifierId = classifierId_example; // String | The ID of the classifier.
+final api = IbmVisualRecognition().getCoreMLApi();
+final String version = version_example; // String | Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+final String classifierId = classifierId_example; // String | The ID of the classifier.
 
 try { 
-    var result = api_instance.getCoreMlModel(version, classifierId);
-    print(result);
-} catch (e) {
+    final response = api.getCoreMlModel(version, classifierId);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling CoreMLApi->getCoreMlModel: $e\n');
 }
 ```

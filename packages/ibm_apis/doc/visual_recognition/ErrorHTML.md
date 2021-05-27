@@ -1,4 +1,4 @@
-# visual_recognition.model.ErrorHTML
+# ibm_visual_recognition.model.ErrorHTML
 
 ## Load the model package
 ```dart

@@ -1,4 +1,4 @@
-# visual_recognition.api.UserDataApi
+# ibm_visual_recognition.api.UserDataApi
 
 ## Load the API package
 ```dart
@@ -9,7 +9,7 @@ All URIs are relative to *https://api.us-south.visual-recognition.watson.cloud.i
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteUserData**](UserDataApi.md#deleteuserdata) | **delete** /v3/user_data | Delete labeled data
+[**deleteUserData**](UserDataApi.md#deleteuserdata) | **DELETE** /v3/user_data | Delete labeled data
 
 
 # **deleteUserData**
@@ -27,14 +27,14 @@ import 'package:ibm_apis/ibm_apis.dart';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('IAM').apiKeyPrefix = 'Bearer';
 
-var api_instance = new UserDataApi();
-var version = version_example; // String | Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
-var customerId = customerId_example; // String | The customer ID for which all data is to be deleted.
+final api = IbmVisualRecognition().getUserDataApi();
+final String version = version_example; // String | Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+final String customerId = customerId_example; // String | The customer ID for which all data is to be deleted.
 
 try { 
-    var result = api_instance.deleteUserData(version, customerId);
-    print(result);
-} catch (e) {
+    final response = api.deleteUserData(version, customerId);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling UserDataApi->deleteUserData: $e\n');
 }
 ```

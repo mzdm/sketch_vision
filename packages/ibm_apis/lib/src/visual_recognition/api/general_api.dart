@@ -3,13 +3,15 @@
 //
 
 import 'dart:async';
-import 'dart:typed_data';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
+
+import 'package:built_collection/built_collection.dart';
 import 'package:ibm_apis/src/visual_recognition/api_util.dart';
 import 'package:ibm_apis/src/visual_recognition/model/classified_images.dart';
+import 'package:ibm_apis/src/visual_recognition/model/error_html.dart';
+import 'package:ibm_apis/src/visual_recognition/model/error_response.dart';
 
 class GeneralApi {
 
@@ -20,12 +22,29 @@ class GeneralApi {
   const GeneralApi(this._dio, this._serializers);
 
   /// Classify images
-  ///
   /// Classify images with built-in or custom classifiers.
+  ///
+  /// Parameters:
+  /// * [version] - Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+  /// * [acceptLanguage] - The desired language of parts of the response. See the response for details.
+  /// * [imagesFile] - An image file (.gif, .jpg, .png, .tif) or .zip file with images. Maximum image size is 10 MB. Include no more than 20 images and limit the .zip file to 100 MB. Encode the image and .zip file names in UTF-8 if they contain non-ASCII characters. The service assumes UTF-8 encoding if it encounters non-ASCII characters.  You can also include an image with the **url** parameter.
+  /// * [url] - The URL of an image (.gif, .jpg, .png, .tif) to analyze. The minimum recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at least 224 x 224 pixels. The maximum image size is 10 MB.  You can also include images with the **images_file** parameter.
+  /// * [threshold] - The minimum score a class must have to be displayed in the response. Set the threshold to `0.0` to return all identified classes.
+  /// * [owners] - The categories of classifiers to apply. The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty.  - Use `IBM` to classify against the `default` general classifier. You get the same result if both **classifier_ids** and **owners** parameters are empty. - Use `me` to classify against all your custom classifiers. However, for better performance use **classifier_ids** to specify the specific custom classifiers to apply. - Use both `IBM` and `me` to analyze the image against both classifier categories.
+  /// * [classifierIds] - Which classifiers to apply. Overrides the **owners** parameter. You can specify both custom and built-in classifier IDs. The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.  The following built-in classifier IDs require no training: - `default`: Returns classes from thousands of general tags. - `food`: Enhances specificity and accuracy for images of food items. - `explicit`: Evaluates whether the image might be pornographic.
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClassifiedImages] as data
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<ClassifiedImages>> classify({ 
     required String version,
     String? acceptLanguage,
-    Uint8List? imagesFile,
+    MultipartFile? imagesFile,
     String? url,
     double? threshold,
     BuiltList<String>? owners,
@@ -55,9 +74,7 @@ class GeneralApi {
         ],
         ...?extra,
       },
-      contentType: [
-        'multipart/form-data',
-      ].first,
+      contentType: 'multipart/form-data',
       validateStatus: validateStatus,
     );
 
@@ -69,14 +86,14 @@ class GeneralApi {
 
     try {
       _bodyData = FormData.fromMap(<String, dynamic>{
-        if (imagesFile != null) r'images_file': MultipartFile.fromBytes(imagesFile, filename: r'images_file'),
+        if (imagesFile != null) r'images_file': imagesFile,
         if (url != null) r'url': encodeFormParameter(_serializers, url, const FullType(String)),
         if (threshold != null) r'threshold': encodeFormParameter(_serializers, threshold, const FullType(double)),
         if (owners != null) r'owners': encodeFormParameter(_serializers, owners, const FullType(BuiltList, [FullType(String)])),
         if (classifierIds != null) r'classifier_ids': encodeFormParameter(_serializers, classifierIds, const FullType(BuiltList, [FullType(String)])),
       });
 
-    } catch(error) {
+    } catch(error, stackTrace) {
       throw DioError(
          requestOptions: _options.compose(
           _dio.options,
@@ -85,7 +102,7 @@ class GeneralApi {
         ),
         type: DioErrorType.other,
         error: error,
-      );
+      )..stackTrace = stackTrace;
     }
 
     final _response = await _dio.request<Object>(
@@ -107,13 +124,13 @@ class GeneralApi {
         specifiedType: _responseType,
       ) as ClassifiedImages;
 
-    } catch (error) {
+    } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
         type: DioErrorType.other,
         error: error,
-      );
+      )..stackTrace = stackTrace;
     }
 
     return Response<ClassifiedImages>(
@@ -129,8 +146,24 @@ class GeneralApi {
   }
 
   /// Classify an image
-  ///
   /// Classify an image with the built-in or custom classifiers.
+  ///
+  /// Parameters:
+  /// * [version] - Release date of the API version you want to use. Specify dates in YYYY-MM-DD format. The current version is `2018-03-19`.
+  /// * [url] - The URL of an image (.gif, .jpg, .png, .tif). The minimum recommended pixel density is 32X32 pixels, but the service tends to perform better with images that are at least 224 x 224 pixels. The maximum image size is 10 MB. Redirects are followed, so you can use a shortened URL.
+  /// * [acceptLanguage] - The desired language of parts of the response. See the response for details.
+  /// * [owners] - The categories of classifiers to apply. The **classifier_ids** parameter overrides **owners**, so make sure that **classifier_ids** is empty.  - Use `IBM` to classify against the `default` general classifier. You get the same result if both **classifier_ids** and **owners** parameters are empty. - Use `me` to classify against all your custom classifiers. However, for better performance use **classifier_ids** to specify the specific custom classifiers to apply. - Use both `IBM` and `me` to analyze the image against both classifier categories.
+  /// * [classifierIds] - Which classifiers to apply. Overrides the **owners** parameter. You can specify both custom and built-in classifier IDs. The built-in `default` classifier is used if both **classifier_ids** and **owners** parameters are empty.  The following built-in classifier_ids require no training: - `default`: Returns classes from thousands of general tags. - `food`: Enhances specificity and accuracy for images of food items. - `explicit`: Evaluates whether the image might be pornographic.
+  /// * [threshold] - The minimum score a class must have to be displayed in the response. Set the threshold to `0.0` to return all identified classes
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClassifiedImages] as data
+  /// Throws [DioError] if API call or serialization fails
   Future<Response<ClassifiedImages>> getClassify({ 
     required String version,
     required String url,
@@ -163,9 +196,6 @@ class GeneralApi {
         ],
         ...?extra,
       },
-      contentType: [
-        'application/json',
-      ].first,
       validateStatus: validateStatus,
     );
 
@@ -195,13 +225,13 @@ class GeneralApi {
         specifiedType: _responseType,
       ) as ClassifiedImages;
 
-    } catch (error) {
+    } catch (error, stackTrace) {
       throw DioError(
         requestOptions: _response.requestOptions,
         response: _response,
         type: DioErrorType.other,
         error: error,
-      );
+      )..stackTrace = stackTrace;
     }
 
     return Response<ClassifiedImages>(

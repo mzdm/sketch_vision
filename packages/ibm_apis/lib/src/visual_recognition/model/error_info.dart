@@ -7,8 +7,12 @@ import 'package:built_value/serializer.dart';
 
 part 'error_info.g.dart';
 
-
-
+/// Information about what might have caused a failure, such as an image that is too large. Not returned when there is no error.
+///
+/// Properties:
+/// * [code] - HTTP status code
+/// * [description] - Human-readable error description. For example, `File size limit exceeded`.
+/// * [errorId] - Codified error string. For example, `limit_exceeded`.
 abstract class ErrorInfo implements Built<ErrorInfo, ErrorInfoBuilder> {
     /// HTTP status code
     @BuiltValueField(wireName: r'code')

@@ -38,7 +38,7 @@ dependencies:
 ```
 
 
-## Documentation for API Endpoints
+## Documentation for Visual Recognition
 
 All URIs are relative to *https://api.us-south.visual-recognition.watson.cloud.ibm.com*
 
@@ -55,7 +55,7 @@ Class | Method | HTTP request | Description
 *UserDataApi* | [**deleteUserData**](doc/visual_recognition/UserDataApi.md#deleteuserdata) | **delete** /v3/user_data | Delete labeled data
 
 
-## Documentation For Models
+### Documentation For Visual Recognition models
 
  - [ClassResult](doc/visual_recognition/ClassResult.md)
  - [ClassifiedImage](doc/visual_recognition/ClassifiedImage.md)

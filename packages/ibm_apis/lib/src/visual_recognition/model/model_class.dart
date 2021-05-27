@@ -7,8 +7,10 @@ import 'package:built_value/serializer.dart';
 
 part 'model_class.g.dart';
 
-
-
+/// A category within a classifier.
+///
+/// Properties:
+/// * [class_] - The name of the class.
 abstract class ModelClass implements Built<ModelClass, ModelClassBuilder> {
     /// The name of the class.
     @BuiltValueField(wireName: r'class')

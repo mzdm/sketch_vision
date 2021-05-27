@@ -9,8 +9,10 @@ import 'package:built_value/serializer.dart';
 
 part 'classifiers.g.dart';
 
-
-
+/// A container for the list of classifiers.
+///
+/// Properties:
+/// * [classifiers] - List of classifiers.
 abstract class Classifiers implements Built<Classifiers, ClassifiersBuilder> {
     /// List of classifiers.
     @BuiltValueField(wireName: r'classifiers')

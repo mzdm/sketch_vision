@@ -9,8 +9,12 @@ import 'package:built_value/serializer.dart';
 
 part 'classifier_result.g.dart';
 
-
-
+/// Classifier and score combination.
+///
+/// Properties:
+/// * [name] - Name of the classifier.
+/// * [classifierId] - ID of a classifier identified in the image.
+/// * [classes] - Classes within the classifier.
 abstract class ClassifierResult implements Built<ClassifierResult, ClassifierResultBuilder> {
     /// Name of the classifier.
     @BuiltValueField(wireName: r'name')

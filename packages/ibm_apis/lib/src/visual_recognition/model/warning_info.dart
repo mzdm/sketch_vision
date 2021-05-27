@@ -7,8 +7,11 @@ import 'package:built_value/serializer.dart';
 
 part 'warning_info.g.dart';
 
-
-
+/// Information about something that went wrong.
+///
+/// Properties:
+/// * [warningId] - Codified warning string, such as `limit_reached`.
+/// * [description] - Information about the error.
 abstract class WarningInfo implements Built<WarningInfo, WarningInfoBuilder> {
     /// Codified warning string, such as `limit_reached`.
     @BuiltValueField(wireName: r'warning_id')

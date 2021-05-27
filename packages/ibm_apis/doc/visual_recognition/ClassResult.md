@@ -1,4 +1,4 @@
-# visual_recognition.model.ClassResult
+# ibm_visual_recognition.model.ClassResult
 
 ## Load the model package
 ```dart
