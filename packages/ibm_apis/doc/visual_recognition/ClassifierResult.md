@@ -12,6 +12,6 @@ Name | Type | Description | Notes
 **classifierId** | **String** | ID of a classifier identified in the image. | 
 **classes** | [**BuiltList<ClassResult>**](ClassResult.md) | Classes within the classifier. | 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
 

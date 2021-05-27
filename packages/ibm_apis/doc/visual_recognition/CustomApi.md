@@ -60,14 +60,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **deleteClassifier**
 > JsonObject deleteClassifier(version, classifierId)
@@ -107,14 +107,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getClassifier**
 > Classifier getClassifier(version, classifierId)
@@ -156,14 +156,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **listClassifiers**
 > Classifiers listClassifiers(version, verbose)
@@ -203,14 +203,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateClassifier**
 > Classifier updateClassifier(version, classifierId, leftCurlyBracketClassnameRightCurlyBracketPositiveExamples, negativeExamples)
@@ -256,12 +256,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

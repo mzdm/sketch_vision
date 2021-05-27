@@ -12,6 +12,6 @@ Name | Type | Description | Notes
 **description** | **String** | Human-readable error description. For example, `File size limit exceeded`. | 
 **errorId** | **String** | Codified error string. For example, `limit_exceeded`. | 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
 

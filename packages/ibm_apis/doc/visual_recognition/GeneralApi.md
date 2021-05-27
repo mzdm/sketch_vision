@@ -63,14 +63,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **getClassify**
 > ClassifiedImages getClassify(version, url, acceptLanguage, owners, classifierIds, threshold)
@@ -120,12 +120,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[IAM](../README.md#IAM)
+[IAM](../../README.md#IAM)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
