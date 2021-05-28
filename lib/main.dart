@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sketch_vision_app/app/app.dart';
+import 'package:universal_platform/universal_platform.dart';
+import 'package:window_size/window_size.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return HomePage();
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (UniversalPlatform.isWindows ||
+      UniversalPlatform.isLinux ||
+      UniversalPlatform.isMacOS) {
+    setWindowTitle('Sketch Vision');
   }
+  runApp(const App());
 }
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
