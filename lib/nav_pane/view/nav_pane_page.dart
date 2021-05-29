@@ -8,6 +8,7 @@ import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
 import 'package:sketch_vision_app/info/view/info_page.dart';
+import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 import 'package:sketch_vision_app/painter/view/painter_page.dart';
@@ -82,9 +83,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
                           return DoublePageContent(
                             title: Locale_cs.classify,
                             contentLeft: Image.memory(state.imageBytes),
-                            contentRight: Container(
-                              color: Colors.red,
-                            ),
+                            contentRight: const LabelerPage(),
                           );
                         }
 
