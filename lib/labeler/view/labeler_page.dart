@@ -50,6 +50,10 @@ class LabelerPage extends StatelessWidget {
               );
             }
 
+            if (state is LabelerSuccess) {
+              // return _buildListLabelPlaceholders(true);
+            }
+
             return Stack(
               children: [
                 IgnorePointer(child: _buildListLabelPlaceholders(false)),
@@ -62,7 +66,7 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
-  ListView _buildListLabelPlaceholders(bool isLoading) {
+  Widget _buildListLabelPlaceholders(bool isLoading) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 20,
@@ -84,7 +88,7 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
-  Padding _buildSkeleton() {
+  Widget _buildSkeleton() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -117,11 +121,9 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _buildClassifyButton(BuildContext context) {
+  Widget _buildClassifyButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        context.read<LabelerBloc>().add(LabelerClassified());
-      },
+      onPressed: () => context.read<LabelerBloc>().add(LabelerClassified()),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
@@ -137,7 +139,7 @@ class LabelerPage extends StatelessWidget {
           },
         ),
       ),
-      child: Text(Locale_cs.classify),
+      child: const Text(Locale_cs.classify),
     );
   }
 }

@@ -73,8 +73,8 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
         if (classifiedImages != null) {
           log(classifiedImages.toString());
           final images = classifiedImages.images;
-          if (images.isNotEmpty && images.first.classifiers.isNotEmpty) {
-            yield LabelerSuccess(images.first.classifiers);
+          if (images.isNotEmpty) {
+            yield LabelerSuccess(images.first);
           } else {
             yield LabelerEmpty();
             yield LabelerSuccess(_loadFakeData());
@@ -87,15 +87,14 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
     }
   }
 
-  BuiltList<ClassifierResult> _loadFakeData() {
+  ClassifiedImage _loadFakeData() {
     return standardSerializers
         .deserializeWith(
           ClassifiedImages.serializer,
           json.decode(testData),
         )!
         .images
-        .first
-        .classifiers;
+        .first;
   }
 }
 

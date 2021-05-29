@@ -29,10 +29,10 @@ class LabelerEmpty extends LabelerState {
 }
 
 class LabelerSuccess extends LabelerState {
-  final BuiltList<ClassifierResult> classifierResults;
+  final ClassifiedImage classifiedImage;
 
-  LabelerSuccess(this.classifierResults);
+  LabelerSuccess(this.classifiedImage);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [classifiedImage];
 }
