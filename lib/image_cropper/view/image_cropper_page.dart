@@ -17,7 +17,7 @@ class ImageCropperPage extends StatefulWidget {
     return FluentPageRoute(
       builder: (_) => BlocProvider.value(
         value: context.read<ImagePickerCubit>(),
-        child: const ResultContent(
+        child: const SinglePageContent(
           title: Locale_cs.crop_title,
           content: ImageCropperPage(),
         ),

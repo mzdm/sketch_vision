@@ -65,25 +65,40 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
       title: Locale_cs.pageItemHeader1,
       content: BlocProvider(
         create: (_) => ImagePickerCubit(),
-        child: BlocConsumer<ImagePickerCubit, ImagePickerState>(
+        child: BlocListener<ImagePickerCubit, ImagePickerState>(
           listener: (context, state) {
             if (state is ImagePickerPicked) {
               Navigator.of(context).push(ImageCropperPage.route(context));
             }
-          },
-          builder: (context, state) {
-            if (state is ImagePickerCropLoading) {
-              return const Center(child: ProgressRing());
-            }
 
-            if (state is ImagePickerCropFinished) {
-              return ResultContent(
-                content: Container(),
+            if (state is ImagePickerCropping) {
+              Navigator.of(context).push(
+                FluentPageRoute(
+                  builder: (_) => BlocProvider.value(
+                    value: context.read<ImagePickerCubit>(),
+                    child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
+                      builder: (context, state) {
+                        if (state is ImagePickerCropFinished) {
+                          return DoublePageContent(
+                            title: Locale_cs.classify,
+                            contentLeft: Image.memory(state.imageBytes),
+                            contentRight: Container(
+                              color: Colors.red,
+                            ),
+                          );
+                        }
+
+                        return const SinglePageContent(
+                          content: Center(child: ProgressRing()),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               );
             }
-
-            return const ImagePickerPage();
           },
+          child: const ImagePickerPage(),
         ),
       ),
     );

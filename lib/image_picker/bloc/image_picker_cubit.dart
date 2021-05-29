@@ -12,7 +12,7 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
 
   void pick(Uint8List imageBytes) => emit(ImagePickerPicked(imageBytes));
 
-  void cropInited() => emit(ImagePickerCropLoading());
+  void cropInited() => emit(ImagePickerCropping());
 
   void crop(Uint8List imageBytes) => emit(ImagePickerCropFinished(imageBytes));
 }

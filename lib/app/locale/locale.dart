@@ -5,4 +5,5 @@ class Locale_cs {
 
   static const crop_title = 'Uříznout obrázek';
   static const next = 'Pokračovat';
+  static const classify = 'Klasifikovat';
 }

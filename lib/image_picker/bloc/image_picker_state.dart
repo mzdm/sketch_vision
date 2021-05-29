@@ -18,8 +18,8 @@ class ImagePickerPicked extends ImagePickerState {
   List<Object> get props => [imageBytes];
 }
 
-class ImagePickerCropLoading extends ImagePickerState {
-  const ImagePickerCropLoading();
+class ImagePickerCropping extends ImagePickerState {
+  const ImagePickerCropping();
 
   @override
   List<Object> get props => [];
