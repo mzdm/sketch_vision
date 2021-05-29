@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide Colors, ButtonThemeData;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 
 class LabelerPage extends StatelessWidget {
   const LabelerPage({
@@ -11,17 +13,24 @@ class LabelerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Container(
-        color: Colors.white,
-        child: Stack(
-          children: [
-            IgnorePointer(child: _buildLabelsPlaceholder()),
-            Center(child: _buildClassifyButton())
-          ],
+    return BlocListener<LabelerBloc, LabelerState>(
+      listener: (context, state) {
+        if (state is LabelerSucess) {
+
+        }
+      },
+      child: Card(
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Container(
+          color: Colors.white,
+          child: Stack(
+            children: [
+              IgnorePointer(child: _buildLabelsPlaceholder()),
+              Center(child: _buildClassifyButton(context))
+            ],
+          ),
         ),
       ),
     );
@@ -72,22 +81,25 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
-  ElevatedButton _buildClassifyButton() {
+  ElevatedButton _buildClassifyButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        context.read<LabelerBloc>().add(LabelerClassified());
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-              late Color color;
-              if (states.contains(MaterialState.pressed)) {
-                color = Colors.blue.withOpacity(0.85);
-              } else if (states.contains(MaterialState.hovered)) {
-                color = Colors.blue.withOpacity(0.85);
-              } else {
-                color = Colors.blue;
-              }
-              return color;
-            }),
+          (Set<MaterialState> states) {
+            late Color color;
+            if (states.contains(MaterialState.pressed)) {
+              color = Colors.blue.withOpacity(0.85);
+            } else if (states.contains(MaterialState.hovered)) {
+              color = Colors.blue.withOpacity(0.85);
+            } else {
+              color = Colors.blue;
+            }
+            return color;
+          },
+        ),
       ),
       child: Text(Locale_cs.classify),
     );

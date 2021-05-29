@@ -8,6 +8,7 @@ import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
 import 'package:sketch_vision_app/info/view/info_page.dart';
+import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
@@ -73,17 +74,23 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
             }
 
             if (state is ImagePickerCropping) {
+              final imagePickerBloc = context.read<ImagePickerCubit>();
               Navigator.of(context).push(
                 FluentPageRoute(
                   builder: (_) => BlocProvider.value(
-                    value: context.read<ImagePickerCubit>(),
+                    value: imagePickerBloc,
                     child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
                       builder: (context, state) {
                         if (state is ImagePickerCropFinished) {
                           return DoublePageContent(
                             title: Locale_cs.classify,
                             contentLeft: Image.memory(state.imageBytes),
-                            contentRight: const LabelerPage(),
+                            contentRight: BlocProvider<LabelerBloc>(
+                              create: (_) => LabelerBloc(
+                                imagePickerBloc: imagePickerBloc,
+                              ),
+                              child: const LabelerPage(),
+                            ),
                           );
                         }
 
