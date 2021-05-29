@@ -39,6 +39,7 @@ class ImagePickerPage extends StatelessWidget {
     return Center(
       child: Button(
         onPressed: () async {
+          context.read<ImagePickerCubit>().reset();
           final pickedImage = await _pickImage();
           if (pickedImage != null) {
             context.read<ImagePickerCubit>().pick(pickedImage);
