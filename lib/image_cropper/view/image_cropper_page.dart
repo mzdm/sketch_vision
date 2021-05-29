@@ -6,11 +6,24 @@ import 'package:flutter/material.dart' hide IconButton;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
+import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
 class ImageCropperPage extends StatefulWidget {
   const ImageCropperPage({
     Key? key,
   }) : super(key: key);
+
+  static FluentPageRoute route(BuildContext context) {
+    return FluentPageRoute(
+      builder: (_) => BlocProvider.value(
+        value: context.read<ImagePickerCubit>(),
+        child: const ResultContent(
+          title: Locale_cs.crop_title,
+          content: ImageCropperPage(),
+        ),
+      ),
+    );
+  }
 
   @override
   _ImageCropperPageState createState() => _ImageCropperPageState();
@@ -35,12 +48,18 @@ class _ImageCropperPageState extends State<ImageCropperPage> {
       children: [
         Flexible(
           flex: 1,
-          child: Button(
-            onPressed: () {
-              imagePickerBloc.cropInited();
-              cropController.crop();
-            },
-            child: const Text(Locale_cs.next),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Button(
+                onPressed: () {
+                  imagePickerBloc.cropInited();
+                  cropController.crop();
+                },
+                child: const Text(Locale_cs.next),
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 10.0),

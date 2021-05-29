@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Colors, ThemeData;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
@@ -67,40 +67,18 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
         create: (_) => ImagePickerCubit(),
         child: BlocConsumer<ImagePickerCubit, ImagePickerState>(
           listener: (context, state) {
-            // if (state is ImagePickerPicked) {
-            //   Navigator.of(context, rootNavigator: true).push(FluentPageRoute(
-            //     builder: (_) => BlocProvider.value(
-            //       value: context.read<ImagePickerCubit>(),
-            //       child: NavigationView(
-            //         appBar: NavigationAppBar(),
-            //         pane: NavigationPane(
-            //           displayMode: PaneDisplayMode.compact,
-            //         ),
-            //         content: NavigationBody(
-            //           index: 0,
-            //           children: [
-            //             ScaffoldPage(
-            //               content: ImageCropperPage(),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ));
-            // }
+            if (state is ImagePickerPicked) {
+              Navigator.of(context).push(ImageCropperPage.route(context));
+            }
           },
           builder: (context, state) {
-            if (state is ImagePickerPicked) {
-              return const ImageCropperPage();
-            }
-
             if (state is ImagePickerCropLoading) {
               return const Center(child: ProgressRing());
             }
 
             if (state is ImagePickerCropFinished) {
               return ResultContent(
-                imageContent: Container(),
+                content: Container(),
               );
             }
 
