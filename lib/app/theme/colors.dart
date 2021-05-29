@@ -2,5 +2,5 @@
 import 'package:flutter/material.dart';
 
 class SketchColors {
-  static const nav_body = Color(0xFFFAF9F8);
+  static const nav_body_content = Color(0xFFFAF9F8);
 }

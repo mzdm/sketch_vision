@@ -1,0 +1,62 @@
+import 'dart:typed_data';
+
+import 'package:crop_your_image/crop_your_image.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' hide IconButton;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
+
+class ImageCropperPage extends StatefulWidget {
+  const ImageCropperPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _ImageCropperPageState createState() => _ImageCropperPageState();
+}
+
+class _ImageCropperPageState extends State<ImageCropperPage> {
+  final cropController = CropController();
+
+  late Uint8List imageBytes;
+  late ImagePickerCubit imagePickerBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    imagePickerBloc = context.read<ImagePickerCubit>();
+    imageBytes = (imagePickerBloc.state as ImagePickerPicked).imageBytes;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Flexible(
+          flex: 1,
+          child: Button(
+            onPressed: () {
+              imagePickerBloc.cropInited();
+              cropController.crop();
+            },
+            child: const Text(Locale_cs.next),
+          ),
+        ),
+        const SizedBox(height: 10.0),
+        Flexible(
+          flex: 10,
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Crop(
+              initialSize: 0.75,
+              image: imageBytes,
+              controller: cropController,
+              onCropped: (image) => imagePickerBloc.crop(image),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
