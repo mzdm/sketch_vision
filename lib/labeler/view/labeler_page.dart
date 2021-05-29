@@ -1,8 +1,10 @@
 import 'dart:ui';
 
+import 'package:built_collection/src/list.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide showDialog;
 import 'package:flutter/material.dart' hide Colors, ButtonThemeData;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibm_apis/visual_recognition/model/classifier_result.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
@@ -51,7 +53,8 @@ class LabelerPage extends StatelessWidget {
             }
 
             if (state is LabelerSuccess) {
-              // return _buildListLabelPlaceholders(true);
+              final data = state.classifiedImage.classifiers;
+              return _buildListLabel(data);
             }
 
             return Stack(
@@ -66,6 +69,85 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
+  Widget _buildListLabel(BuiltList<ClassifierResult> data) {
+    if (data.isEmpty) {
+      return Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: const Center(child: Text('No labels')),
+      );
+    }
+
+    final builder = data.first.classes.toBuilder()
+      ..sort((a, b) => a.score.compareTo(b.score))
+      ..reverse();
+    final classes = builder.build();
+
+    return ListView.builder(
+      itemCount: classes.length,
+      itemBuilder: (context, index) {
+        if (classes.isEmpty) {
+          return const Text('No labels');
+        }
+
+        return _buildLabelItem(
+          name: classes.elementAt(index).class_,
+          score: classes.elementAt(index).score,
+        );
+      },
+    );
+  }
+
+  Widget _buildLabelItem({
+    required String name,
+    required double score,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 18.0,
+        horizontal: 15.0,
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  height: 20,
+                  child: Text(name),
+                ),
+              ),
+              const SizedBox(width: 10.0),
+              Expanded(
+                child: Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: Container(
+                    height: 20,
+                    child: Text(score.toString()),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 3.0),
+          Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Container(
+                width: double.infinity,
+                child: ProgressBar(
+                  value: (score * 100).clamp(0, 100),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildListLabelPlaceholders(bool isLoading) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
@@ -75,20 +157,20 @@ class LabelerPage extends StatelessWidget {
             ? Shimmer.fromColors(
                 baseColor: SketchColors.shimmer_base,
                 highlightColor: SketchColors.shimmer_highlight,
-                child: _buildSkeleton(),
+                child: _buildSkeletonItem(),
               )
             : BackdropFilter(
                 filter: ImageFilter.blur(
                   sigmaX: 2.0,
                   sigmaY: 2.0,
                 ),
-                child: _buildSkeleton(),
+                child: _buildSkeletonItem(),
               );
       },
     );
   }
 
-  Widget _buildSkeleton() {
+  Widget _buildSkeletonItem() {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(

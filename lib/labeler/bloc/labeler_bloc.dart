@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:equatable/equatable.dart';
 import 'package:ibm_apis/visual_recognition.dart';
@@ -11,10 +10,9 @@ import 'package:ibm_apis/visual_recognition/model/classified_images.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 
 part 'labeler_event.dart';
-
 part 'labeler_state.dart';
 
-const _testMode = false;
+const _testMode = true;
 
 const _authName = 'IAM';
 const _authUsername = 'apikey';
