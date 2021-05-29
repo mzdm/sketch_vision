@@ -15,7 +15,6 @@ class LabelerLoading extends LabelerState {
 }
 
 class LabelerError extends LabelerState {
-
   final String message;
 
   LabelerError(this.message);
@@ -24,7 +23,16 @@ class LabelerError extends LabelerState {
   List<Object> get props => [message];
 }
 
-class LabelerSucess extends LabelerState {
+class LabelerEmpty extends LabelerState {
+  @override
+  List<Object> get props => [];
+}
+
+class LabelerSuccess extends LabelerState {
+  final BuiltList<ClassifierResult> classifierResults;
+
+  LabelerSuccess(this.classifierResults);
+
   @override
   List<Object> get props => [];
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:equatable/equatable.dart';
 import 'package:ibm_apis/visual_recognition.dart';
@@ -12,6 +13,8 @@ import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 part 'labeler_event.dart';
 
 part 'labeler_state.dart';
+
+const _testMode = false;
 
 const _authName = 'IAM';
 const _authUsername = 'apikey';
@@ -42,30 +45,57 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
     if (event is LabelerClassified) {
       final imagePickerState = imagePickerBloc.state;
       if (imagePickerState is ImagePickerCropFinished) {
-        final imageBytes = imagePickerState.imageBytes;
+        yield LabelerLoading();
 
         ClassifiedImages? classifiedImages;
-        bool testMode = true;
-        if (!testMode) {
-          final response = await ibmVisualRecognition.getGeneralApi().classify(
-                imagesFile: dio.MultipartFile.fromBytes(
-                  imageBytes,
-                  filename: 'example',
-                ),
-                version: '2018-03-19',
-                threshold: 0.0,
-              );
-          classifiedImages = response.data;
+        final imageBytes = imagePickerState.imageBytes;
+
+        if (!_testMode) {
+          try {
+            final response =
+                await ibmVisualRecognition.getGeneralApi().classify(
+                      imagesFile: dio.MultipartFile.fromBytes(
+                        imageBytes,
+                        filename: 'example',
+                      ),
+                      version: '2018-03-19',
+                      threshold: 0.0,
+                    );
+            classifiedImages = response.data;
+          } catch (e) {
+            log(e.toString());
+            final errorMessage = e is dio.DioError ? e.message : e.toString();
+            yield LabelerError(errorMessage);
+            await Future.delayed(const Duration(seconds: 6));
+          }
+        }
+
+        if (classifiedImages != null) {
+          log(classifiedImages.toString());
+          final images = classifiedImages.images;
+          if (images.isNotEmpty && images.first.classifiers.isNotEmpty) {
+            yield LabelerSuccess(images.first.classifiers);
+          } else {
+            yield LabelerEmpty();
+            yield LabelerSuccess(_loadFakeData());
+          }
         } else {
-          final test = standardSerializers.deserializeWith(
-            ClassifiedImages.serializer,
-            json.decode(testData),
-          );
-          log(test.toString());
+          // log(_loadFakeData().toString());
+          yield LabelerSuccess(_loadFakeData());
         }
       }
     }
-    // TODO: implement mapEventToState
+  }
+
+  BuiltList<ClassifierResult> _loadFakeData() {
+    return standardSerializers
+        .deserializeWith(
+          ClassifiedImages.serializer,
+          json.decode(testData),
+        )!
+        .images
+        .first
+        .classifiers;
   }
 }
 

@@ -1,9 +1,11 @@
 import 'dart:ui';
 
-import 'package:fluent_ui/fluent_ui.dart';
+import 'package:fluent_ui/fluent_ui.dart' hide showDialog;
 import 'package:flutter/material.dart' hide Colors, ButtonThemeData;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/app/theme/colors.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 
 class LabelerPage extends StatelessWidget {
@@ -13,71 +15,105 @@ class LabelerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LabelerBloc, LabelerState>(
-      listener: (context, state) {
-        if (state is LabelerSucess) {
+    return Card(
+      elevation: 1.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Container(
+        color: Colors.white,
+        child: BlocConsumer<LabelerBloc, LabelerState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is LabelerLoading) {
+              return _buildListLabelPlaceholders(true);
+            }
 
-        }
-      },
-      child: Card(
-        elevation: 1.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Container(
-          color: Colors.white,
-          child: Stack(
-            children: [
-              IgnorePointer(child: _buildLabelsPlaceholder()),
-              Center(child: _buildClassifyButton(context))
-            ],
-          ),
+            if (state is LabelerError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InfoBar(
+                      isLong: true,
+                      title: const Text(Locale_cs.error),
+                      content: Text(state.message),
+                      severity: InfoBarSeverity.error,
+                    ),
+                    const SizedBox(height: 10.0),
+                    const InfoBar(
+                      title: Text(Locale_cs.note),
+                      content: Text(Locale_cs.fake_data),
+                      severity: InfoBarSeverity.info,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            return Stack(
+              children: [
+                IgnorePointer(child: _buildListLabelPlaceholders(false)),
+                Center(child: _buildClassifyButton(context)),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
-  ListView _buildLabelsPlaceholder() {
+  ListView _buildListLabelPlaceholders(bool isLoading) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 20,
       itemBuilder: (context, index) {
-        return BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 2.0,
-            sigmaY: 2.0,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Flexible(
-                      flex: 3,
-                      child: Container(
-                        height: 15,
-                        color: Colors.grey[90],
-                      ),
-                    ),
-                    const SizedBox(width: 10.0),
-                    Flexible(
-                      child: Container(
-                        height: 15,
-                        color: Colors.grey[90],
-                      ),
-                    ),
-                  ],
+        return isLoading
+            ? Shimmer.fromColors(
+                baseColor: SketchColors.shimmer_base,
+                highlightColor: SketchColors.shimmer_highlight,
+                child: _buildSkeleton(),
+              )
+            : BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 2.0,
+                  sigmaY: 2.0,
                 ),
-                const SizedBox(height: 5.0),
-                Container(
+                child: _buildSkeleton(),
+              );
+      },
+    );
+  }
+
+  Padding _buildSkeleton() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Flexible(
+                flex: 3,
+                child: Container(
                   height: 15,
                   color: Colors.grey[90],
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 10.0),
+              Flexible(
+                child: Container(
+                  height: 15,
+                  color: Colors.grey[90],
+                ),
+              ),
+            ],
           ),
-        );
-      },
+          const SizedBox(height: 5.0),
+          Container(
+            height: 15,
+            color: Colors.grey[90],
+          ),
+        ],
+      ),
     );
   }
 
