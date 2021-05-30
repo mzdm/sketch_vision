@@ -89,7 +89,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
                               create: (_) => LabelerBloc(
                                 imagePickerBloc: imagePickerBloc,
                               ),
-                              child: const LabelerPage(),
+                              child: const LabelerView(page: LabelerPage()),
                             ),
                           );
                         }
