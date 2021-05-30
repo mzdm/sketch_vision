@@ -1,13 +1,16 @@
 import 'dart:ui';
 
-import 'package:built_collection/src/list.dart';
-import 'package:fluent_ui/fluent_ui.dart' hide showDialog;
-import 'package:flutter/material.dart' hide Colors, ButtonThemeData;
+import 'package:built_collection/built_collection.dart';
+import 'package:carbon_icons/carbon_icons.dart';
+import 'package:fluent_ui/fluent_ui.dart' hide showDialog, Tooltip;
+import 'package:flutter/material.dart' hide Colors, ButtonThemeData, IconButton;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibm_apis/visual_recognition/model/class_result.dart';
 import 'package:ibm_apis/visual_recognition/model/classifier_result.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
+import 'package:sketch_vision_app/hierarchy/view/hierarchy_page.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 
 class LabelerPage extends StatelessWidget {
@@ -54,7 +57,7 @@ class LabelerPage extends StatelessWidget {
 
             if (state is LabelerSuccess) {
               final data = state.classifiedImage.classifiers;
-              return _buildListLabel(data);
+              return _buildListLabel(context, data);
             }
 
             return Stack(
@@ -69,12 +72,17 @@ class LabelerPage extends StatelessWidget {
     );
   }
 
-  Widget _buildListLabel(BuiltList<ClassifierResult> data) {
+  Widget _buildListLabel(
+    BuildContext context,
+    BuiltList<ClassifierResult> data,
+  ) {
     if (data.isEmpty) {
-      return Container(
+      return const SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: const Center(child: Text('No labels')),
+        child: Center(
+          child: Text(Locale_cs.no_labels),
+        ),
       );
     }
 
@@ -87,14 +95,66 @@ class LabelerPage extends StatelessWidget {
       itemCount: classes.length,
       itemBuilder: (context, index) {
         if (classes.isEmpty) {
-          return const Text('No labels');
+          return const SizedBox();
         }
 
-        return _buildLabelItem(
+        final labelItem = _buildLabelItem(
           name: classes.elementAt(index).class_,
           score: classes.elementAt(index).score,
         );
+
+        if (index == 0) {
+          return Column(
+            children: [
+              _buildMenu(context, classes),
+              labelItem,
+            ],
+          );
+        }
+        return labelItem;
       },
+    );
+  }
+
+  Widget _buildMenu(
+    BuildContext context,
+    BuiltList<ClassResult> classes,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 18.0,
+        horizontal: 15.0,
+      ),
+      child: Row(
+        textDirection: TextDirection.rtl,
+        children: [
+          Tooltip(
+            message: Locale_cs.translate,
+            child: IconButton(
+              icon: const Icon(CarbonIcons.translate),
+              onPressed: () {},
+            ),
+          ),
+          const SizedBox(width: 5.0),
+          Tooltip(
+            message: Locale_cs.json_response,
+            child: IconButton(
+              icon: const Icon(CarbonIcons.script),
+              onPressed: () {},
+            ),
+          ),
+          const SizedBox(width: 5.0),
+          Tooltip(
+            message: Locale_cs.hierarchy,
+            child: IconButton(
+              icon: const Icon(CarbonIcons.tree_view),
+              onPressed: () {
+                Navigator.of(context).push(HieararchyPage.route(classes));
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -113,7 +173,7 @@ class LabelerPage extends StatelessWidget {
             children: [
               Expanded(
                 flex: 3,
-                child: Container(
+                child: SizedBox(
                   height: 20,
                   child: Text(name),
                 ),
@@ -122,7 +182,7 @@ class LabelerPage extends StatelessWidget {
               Expanded(
                 child: Align(
                   alignment: AlignmentDirectional.centerEnd,
-                  child: Container(
+                  child: SizedBox(
                     height: 20,
                     child: Text(score.toString()),
                   ),
@@ -135,7 +195,7 @@ class LabelerPage extends StatelessWidget {
             padding: const EdgeInsets.all(3.0),
             child: Align(
               alignment: AlignmentDirectional.centerStart,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: ProgressBar(
                   value: (score * 100).clamp(0, 100),
