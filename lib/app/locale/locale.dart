@@ -8,7 +8,10 @@ class Locale_cs {
 
   static const no_labels = 'Labely nenalezeny';
   static const hierarchy = 'Hierarchie typů';
+
   static const json_response = 'Odpověď v JSONu';
+  static const copy = 'Kopírovat';
+
   static const translate = 'Přeložit';
 
   static const next = 'Pokračovat';
