@@ -2,7 +2,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:ibm_apis/visual_recognition.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
-import 'package:sketch_vision_app/labeler/helpers/classifier_sorter.dart';
 import 'package:sketch_vision_app/labeler/widgets/label_item.dart';
 
 class LabelList extends StatelessWidget {
@@ -12,7 +11,7 @@ class LabelList extends StatelessWidget {
     this.menu,
   }) : super(key: key);
 
-  final BuiltList<ClassifierResult> data;
+  final BuiltList<ClassResult> data;
   final Widget? menu;
 
   @override
@@ -27,17 +26,16 @@ class LabelList extends StatelessWidget {
       );
     }
 
-    final classes = sortByScore(data);
     return ListView.builder(
-      itemCount: classes.length,
+      itemCount: data.length,
       itemBuilder: (context, index) {
-        if (classes.isEmpty) {
+        if (data.isEmpty) {
           return const SizedBox();
         }
 
         final labelItem = LabelItem(
-          name: classes.elementAt(index).class_,
-          score: classes.elementAt(index).score,
+          name: data.elementAt(index).class_,
+          score: data.elementAt(index).score,
         );
 
         if (index == 0 && menu != null) {

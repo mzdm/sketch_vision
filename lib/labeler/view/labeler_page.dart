@@ -74,9 +74,10 @@ class LabelerPage extends StatelessWidget {
 
         if (state is LabelerSuccess) {
           final data = state.classifiedImage.classifiers;
+          final sorted = sortByScore(data);
           return LabelList(
-            data: data,
-            menu: _buildMenu(context, sortByScore(data)),
+            data: sorted,
+            menu: _buildMenu(context, sorted),
           );
         }
 

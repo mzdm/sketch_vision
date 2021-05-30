@@ -53,7 +53,9 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
         yield TranslatorLoading();
 
         BuiltList<Translation>? translations;
-        if (!Config.testMode) {
+
+        // in translation view do not display fake data
+        if (true) {
           final translateResponse =
               await translatorApi.getTranslationApi().translate(
                     version: '2018-05-01',
