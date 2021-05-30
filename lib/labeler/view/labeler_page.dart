@@ -13,6 +13,7 @@ import 'package:sketch_vision_app/app/theme/colors.dart';
 import 'package:sketch_vision_app/hierarchy/view/hierarchy_page.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/response_dialog.dart';
+import 'package:sketch_vision_app/translator/view/translator_page.dart';
 
 class LabelerPage extends StatelessWidget {
   const LabelerPage({
@@ -133,7 +134,9 @@ class LabelerPage extends StatelessWidget {
             message: Locale_cs.translate,
             child: IconButton(
               icon: const Icon(CarbonIcons.translate),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(TranslatorPage.route(classes));
+              },
             ),
           ),
           const SizedBox(width: 5.0),

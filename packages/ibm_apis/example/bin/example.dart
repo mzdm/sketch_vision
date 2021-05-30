@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
@@ -59,7 +60,7 @@ Future<void> main(List<String> arguments) async {
       );
     final lang.TranslationResult? data = translateResponse.data;
     print(data?.translations.toString());
-    // print(jsonEncode(standardSerializers.serialize(data)));
+    print(jsonEncode(lang.standardSerializers.serialize(data)));
   } catch (e) {
     print(e);
   }
