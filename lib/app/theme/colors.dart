@@ -12,4 +12,11 @@ class SketchColors {
 
   // fluent grey.shade.90
   static const skeleton_item = Color(0xFFA19F9D);
+
+  // very light grey
+  static const pen_action_pressed = Color.fromARGB(255, 225, 223, 221);
+
+  static const white = Color(0xFFFFFFFF);
+
+  static const black = Color(0xFF000000);
 }

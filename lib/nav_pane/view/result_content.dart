@@ -35,52 +35,60 @@ class SinglePageContent extends StatelessWidget {
 class DoublePageContent extends StatelessWidget {
   const DoublePageContent({
     Key? key,
+    this.isFromNavigator = true,
     required this.contentLeft,
     required this.contentRight,
     this.title,
   }) : super(key: key);
 
+  final bool isFromNavigator;
   final Widget contentLeft;
   final Widget contentRight;
   final String? title;
 
   @override
   Widget build(BuildContext context) {
-    return NavigationView(
-      appBar: NavigationAppBar(
-        title: title == null ? null : Text(title!),
-      ),
-      pane: NavigationPane(
-        displayMode: PaneDisplayMode.compact,
-      ),
-      content: NavigationBody(
-        index: 0,
-        children: [
-          ScaffoldPage(
-            content: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return isFromNavigator
+        ? NavigationView(
+            appBar: NavigationAppBar(
+              title: title == null ? null : Text(title!),
+            ),
+            pane: NavigationPane(
+              displayMode: PaneDisplayMode.compact,
+            ),
+            content: NavigationBody(
+              index: 0,
               children: [
-                const SizedBox(width: 30.0),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                    color: Colors.white,
-                    child: contentLeft,
-                  ),
+                ScaffoldPage(
+                  content: _buildLayout(),
                 ),
-                const SizedBox(width: 30.0),
-                Flexible(
-                  flex: 1,
-                  child: contentRight,
-                ),
-                const SizedBox(width: 30.0),
               ],
             ),
+          )
+        : _buildLayout();
+  }
+
+  Widget _buildLayout() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(width: 30.0),
+        Expanded(
+          flex: 2,
+          child: Container(
+            color: Colors.white,
+            child: contentLeft,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 30.0),
+        Flexible(
+          flex: 1,
+          child: contentRight,
+        ),
+        const SizedBox(width: 30.0),
+      ],
     );
   }
 }

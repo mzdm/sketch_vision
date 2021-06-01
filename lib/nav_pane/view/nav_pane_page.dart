@@ -12,6 +12,8 @@ import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
+import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
+import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/view/painter_page.dart';
 
 class NavigationPanePage extends StatefulWidget {
@@ -111,9 +113,19 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
   }
 
   NavigationBodyContent buildPainterPageItem() {
-    return const NavigationBodyContent(
+    return NavigationBodyContent(
       title: Locale_cs.pageItemHeader2,
-      content: PainterPage(),
+      content: MultiBlocProvider(
+        providers: [
+          BlocProvider<PainterBloc>(create: (_) => PainterBloc()),
+          BlocProvider<ImagePickerCubit>(create: (_) => ImagePickerCubit()),
+        ],
+        child: const DoublePageContent(
+          isFromNavigator: false,
+          contentLeft: PainterBox(),
+          contentRight: LabelerView(page: PainterMenu()),
+        ),
+      ),
     );
   }
 

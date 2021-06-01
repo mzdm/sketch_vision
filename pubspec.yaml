@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -20,6 +20,7 @@ dependencies:
   # ui
   carbon_icons: ^0.0.1+2 # https://pub.dev/packages/carbon_icons
   crop_your_image: ^0.5.3 # https://pub.dev/packages/crop_your_image
+  flex_color_picker: ^2.0.1 # https://pub.dev/packages/flex_color_picker
   fluent_ui: ^2.0.3 # https://pub.dev/packages/fluent_ui
   graphview: ^1.0.0-nullsafety.1 # https://pub.dev/packages/graphview
   shimmer: ^2.0.0 # https://pub.dev/packages/shimmer
