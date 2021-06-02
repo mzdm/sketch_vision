@@ -22,7 +22,7 @@ class PainterPenActions extends StatelessWidget {
           children: const [
             PenAction(
               tooltip: Locale_cs.pen_eraser,
-              actionPenType: PenType.paint_brush,
+              actionPenType: PenType.eraser,
               iconData: CarbonIcons.erase,
             ),
             SizedBox(width: 5.0),

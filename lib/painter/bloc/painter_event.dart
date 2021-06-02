@@ -55,7 +55,3 @@ class PainterSaved extends PainterEvent {
   List<Object> get props => [];
 }
 
-class PainterFinished extends PainterEvent {
-  @override
-  List<Object> get props => [];
-}
