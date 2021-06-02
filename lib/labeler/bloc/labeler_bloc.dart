@@ -29,7 +29,7 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
     ibmVisualRecognition.setBasicAuth(
       _authName,
       _authUsername,
-      'API_KEY',
+      EnvConfig.IBM_VISUAL_RECOGNITION_API_KEY,
     );
   }
 
@@ -48,7 +48,7 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
         ClassifiedImages? classifiedImages;
         final imageBytes = imagePickerState.imageBytes;
 
-        if (!Config.testMode) {
+        if (!AppConfig.testMode) {
           try {
             final response =
                 await ibmVisualRecognition.getGeneralApi().classify(
@@ -64,7 +64,7 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
             log(e.toString());
             final errorMessage = e is dio.DioError ? e.message : e.toString();
             yield LabelerError(errorMessage);
-            await Future.delayed(const Duration(seconds: 6));
+            await Future.delayed(const Duration(milliseconds: 1500));
           }
         }
 

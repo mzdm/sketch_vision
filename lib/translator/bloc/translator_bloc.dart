@@ -8,6 +8,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ibm_apis/language_translator.dart';
 import 'package:ibm_apis/visual_recognition.dart'
     show ClassResult, ClassResultBuilder;
+import 'package:sketch_vision_app/app/config.dart';
 
 part 'translator_event.dart';
 part 'translator_state.dart';
@@ -27,7 +28,7 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
     translatorApi.setBasicAuth(
       _authName,
       _authUsername,
-      'API_KEY',
+      EnvConfig.IBM_TRANSLATOR_API_KEY,
     );
   }
 
@@ -99,16 +100,15 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
     }
   }
 
-  // BuiltList<Translation> _loadFakeData() {
-  //   final List<dynamic> fakeData = json.decode(_fakeResponse);
-  //   return BuiltList.from(
-  //     fakeData.map(
-  //       (value) => standardSerializers.deserializeWith(
-  //         Translation.serializer,
-  //         value,
-  //       ),
-  //     ),
-  //   );
-  // }
+// BuiltList<Translation> _loadFakeData() {
+//   final List<dynamic> fakeData = json.decode(_fakeResponse);
+//   return BuiltList.from(
+//     fakeData.map(
+//       (value) => standardSerializers.deserializeWith(
+//         Translation.serializer,
+//         value,
+//       ),
+//     ),
+//   );
+// }
 }
-
