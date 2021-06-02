@@ -24,8 +24,9 @@ class ImagePickerPage extends StatelessWidget {
         fileExtension: 'jpg, png, jpeg',
       );
 
-      final fileName = pickedFile.fileName.toString();
-      if (!RegExp(r'\.((jpg)|(png))$').hasMatch(fileName)) {
+      final fileName = pickedFile.fileName.toString().toLowerCase();
+      if (!(fileName.endsWith('.png') || fileName.endsWith('.jpg'))) {
+        // TODO: Show some kind of error dialog
         throw (UnsupportedError(
             'picked an image with unsupported file extension: $fileName'));
       }
