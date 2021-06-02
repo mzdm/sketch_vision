@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "predeploy": "flutter build web --dart-define=FLUTTER_WEB_USE_SKIA=true",
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

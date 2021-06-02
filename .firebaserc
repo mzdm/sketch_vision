@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "live": "sketch-vision-deploy",
+    "default": "sketch-vision-deploy"
+  }
+}
