@@ -11,11 +11,15 @@ class NavigationBodyContent extends StatelessWidget {
   const NavigationBodyContent({
     Key? key,
     this.title = '',
+    this.commandBar,
     required this.content,
   }) : super(key: key);
 
   /// [PageHeader] title.
   final String title;
+
+  /// Action(s) above the page [content].
+  final Widget? commandBar;
 
   /// Content of the page.
   final Widget content;
@@ -28,6 +32,7 @@ class NavigationBodyContent extends StatelessWidget {
           title,
           style: const TextStyle(fontSize: 30.0),
         ),
+        commandBar: commandBar,
       ),
       content: SizedBox(
         width: context.screenWidth,

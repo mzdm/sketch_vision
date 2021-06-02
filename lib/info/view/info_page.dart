@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
 
+/// URL of the source code.
+const repo_url = 'https://github.com/mzdm/sketch_vision';
+
 /// {@template about_app}
 /// Page view where is shown basic info about the app.
 /// {@endtemplate}

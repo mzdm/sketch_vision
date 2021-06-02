@@ -3,6 +3,7 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide Colors, ThemeData;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/app/theme/colors.dart';
 import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
@@ -14,6 +15,7 @@ import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/view/painter_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// {@template navigation_pane_page}
 /// The side menu shown on app start up.
@@ -136,9 +138,26 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
 
   /// Shows [InfoPage].
   NavigationBodyContent buildInfoPageItem() {
-    return const NavigationBodyContent(
+    return NavigationBodyContent(
       title: Locale_cs.pageItemHeader3,
-      content: InfoPage(),
+      commandBar: GestureDetector(
+        onTap: () async {
+          if (await canLaunch(repo_url)) {
+            await launch(repo_url);
+          }
+        },
+        child: const MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Text(
+            'GitHub repozitář',
+            style: TextStyle(
+              color: SketchColors.blue,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        ),
+      ),
+      content: const InfoPage(),
     );
   }
 }
