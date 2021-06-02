@@ -149,7 +149,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
         child: const MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Text(
-            'GitHub repozitář',
+            Locale_cs.github_repo,
             style: TextStyle(
               color: SketchColors.blue,
               decoration: TextDecoration.underline,

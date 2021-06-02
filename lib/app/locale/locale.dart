@@ -3,6 +3,7 @@ class Locale_cs {
   static const pageItemHeader1 = 'Vybrat obrázek';
   static const pageItemHeader2 = 'Sketch';
   static const pageItemHeader3 = 'O aplikaci';
+  static const github_repo = 'GitHub repozitář';
 
   static const crop_title = 'Oříznout obrázek';
   static const classify = 'Klasifikovat';
@@ -14,6 +15,8 @@ class Locale_cs {
   static const copy = 'Kopírovat';
 
   static const translate = 'Přeložit';
+  static const language = 'Jazyk';
+  static const choose_language = 'Vybrat jazyk';
 
   static const next = 'Pokračovat';
   static const error = 'Chyba';

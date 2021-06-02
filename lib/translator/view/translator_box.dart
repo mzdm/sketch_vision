@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/translator/bloc/translator_bloc.dart';
 import 'package:sketch_vision_app/translator/data/available_languages.dart';
 
@@ -39,9 +40,9 @@ class _TranslatorBoxState extends State<TranslatorBox> {
         child: SizedBox(
           width: 200,
           child: InfoLabel(
-            label: 'Jazyk',
+            label: Locale_cs.language,
             child: Combobox<String>(
-              placeholder: const Text('Vybrat jazyk'),
+              placeholder: const Text(Locale_cs.choose_language),
               isExpanded: true,
               items: availableLanguagesTranslator.entries
                   .toList()
