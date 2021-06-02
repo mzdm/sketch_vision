@@ -10,7 +10,7 @@ import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/hierarchy/view/hierarchy_page.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/helpers/classifier_sorter.dart';
-import 'package:sketch_vision_app/labeler/view/response_dialog.dart';
+import 'package:sketch_vision_app/labeler/view/json_response_dialog.dart';
 import 'package:sketch_vision_app/labeler/widgets/label_list.dart';
 import 'package:sketch_vision_app/labeler/widgets/skeleton_list.dart';
 import 'package:sketch_vision_app/translator/view/translator_page.dart';
@@ -133,7 +133,7 @@ class LabelerPage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(CarbonIcons.script),
               onPressed: () {
-                Navigator.of(context).push(ResponseDialog.route(classes));
+                Navigator.of(context).push(JsonResponseDialog.route(classes));
               },
             ),
           ),

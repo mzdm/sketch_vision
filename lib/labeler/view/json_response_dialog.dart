@@ -13,9 +13,9 @@ import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 /// A menu action in the [LabelerPage], displays the
 /// `IBM Visual Recognition` JSON response.
 /// {@endtemplate}
-class ResponseDialog extends StatefulWidget {
+class JsonResponseDialog extends StatefulWidget {
   /// {@macro response_dialog}
-  const ResponseDialog({
+  const JsonResponseDialog({
     Key? key,
     required this.classes,
   }) : super(key: key);
@@ -28,17 +28,17 @@ class ResponseDialog extends StatefulWidget {
       builder: (_) {
         return SinglePageContent(
           title: Locale_cs.json_response,
-          content: ResponseDialog(classes: classes),
+          content: JsonResponseDialog(classes: classes),
         );
       },
     );
   }
 
   @override
-  _ResponseDialogState createState() => _ResponseDialogState();
+  _JsonResponseDialogState createState() => _JsonResponseDialogState();
 }
 
-class _ResponseDialogState extends State<ResponseDialog> {
+class _JsonResponseDialogState extends State<JsonResponseDialog> {
   final textController = TextEditingController();
 
   @override
