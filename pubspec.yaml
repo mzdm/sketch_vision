@@ -9,11 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  collection: ^1.15.0 # https://pub.dev/packages/collection
   equatable: ^2.0.2 # https://pub.dev/packages/equatable
   flutter_bloc: ^7.0.0 # https://pub.dev/packages/flutter_bloc
   ibm_apis: # https://github.com/mzdm/sketch_vision_app/tree/main/packages/ibm_apis
     path: packages/ibm_apis
-  rxdart: ^0.27.0 # https://rxmarbles.com/ https://pub.dev/packages/rxdart
   universal_platform: ^1.0.0-nullsafety # https://pub.dev/packages/universal_platform
   url_launcher: ^6.0.4 # https://pub.dev/packages/url_launcher
 
