@@ -12,7 +12,6 @@ import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/labeler/data/fake_response.dart';
 
 part 'labeler_event.dart';
-
 part 'labeler_state.dart';
 
 const _authName = 'IAM';
@@ -79,7 +78,6 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
             yield LabelerSuccess(_loadFakeData());
           }
         } else {
-          // log(_loadFakeData().toString());
           yield LabelerSuccess(_loadFakeData());
         }
       }
@@ -90,7 +88,7 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
     return standardSerializers
         .deserializeWith(
           ClassifiedImages.serializer,
-          json.decode(testData),
+          json.decode(testDataLabels),
         )!
         .images
         .first;
