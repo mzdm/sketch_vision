@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide Colors, ThemeData;
@@ -16,7 +15,11 @@ import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/view/painter_page.dart';
 
+/// {@template navigation_pane_page}
+/// The side menu shown on app start up.
+/// {@endtemplate}
 class NavigationPanePage extends StatefulWidget {
+  /// {@macro navigation_pane_page}
   const NavigationPanePage({
     Key? key,
   }) : super(key: key);
@@ -64,6 +67,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
     );
   }
 
+  /// Shows the [ImagePickerPage].
   NavigationBodyContent buildImagePickerItem() {
     return NavigationBodyContent(
       title: Locale_cs.pageItemHeader1,
@@ -112,6 +116,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
     );
   }
 
+  /// Shows the painter page, both [PainterBox] and [PainterMenu].
   NavigationBodyContent buildPainterPageItem() {
     return NavigationBodyContent(
       title: Locale_cs.pageItemHeader2,
@@ -129,6 +134,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
     );
   }
 
+  /// Shows [InfoPage].
   NavigationBodyContent buildInfoPageItem() {
     return const NavigationBodyContent(
       title: Locale_cs.pageItemHeader3,

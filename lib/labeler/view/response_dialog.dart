@@ -6,14 +6,21 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:ibm_apis/visual_recognition.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
+/// {@template response_dialog}
+/// A menu action in the [LabelerPage], displays the
+/// `IBM Visual Recognition` JSON response.
+/// {@endtemplate}
 class ResponseDialog extends StatefulWidget {
+  /// {@macro response_dialog}
   const ResponseDialog({
     Key? key,
     required this.classes,
   }) : super(key: key);
 
+  /// List of classified [ClassResult], which contains labels and its scores.
   final BuiltList<ClassResult> classes;
 
   static FluentPageRoute route(BuiltList<ClassResult> classes) {

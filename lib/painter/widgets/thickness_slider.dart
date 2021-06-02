@@ -2,10 +2,16 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
+import 'package:sketch_vision_app/painter/models/pen_type.dart';
 
+/// The initial value of [Slider].
 const initialThicknessSliderValue = 20.0;
 
+/// {@template thickness_slider}
+/// [Slider] widget for manipulating the pixel size of the [PenType].
+/// {@endtemplate}
 class ThicknessSlider extends StatelessWidget {
+  /// {@macro thickness_slider}
   const ThicknessSlider({
     Key? key,
   }) : super(key: key);

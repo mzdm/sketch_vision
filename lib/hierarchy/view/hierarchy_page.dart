@@ -9,12 +9,17 @@ import 'package:sketch_vision_app/hierarchy/helpers/graph_label_builder.dart';
 import 'package:sketch_vision_app/hierarchy/widgets/node_rect.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
-class HieararchyPage extends StatefulWidget {
-  const HieararchyPage({
+/// {@template hierarchy_page}
+/// View of the image's type hierarchy.
+/// {@endtemplate}
+class HierarchyPage extends StatefulWidget {
+  /// {@macro hierarchy_page}
+  const HierarchyPage({
     Key? key,
     required this.classes,
   }) : super(key: key);
 
+  /// List of classified [ClassResult], which contains labels and its scores.
   final BuiltList<ClassResult> classes;
 
   static FluentPageRoute route(BuiltList<ClassResult> classes) {
@@ -22,17 +27,17 @@ class HieararchyPage extends StatefulWidget {
       builder: (_) {
         return SinglePageContent(
           title: Locale_cs.hierarchy,
-          content: HieararchyPage(classes: classes),
+          content: HierarchyPage(classes: classes),
         );
       },
     );
   }
 
   @override
-  _HieararchyPageState createState() => _HieararchyPageState();
+  _HierarchyPageState createState() => _HierarchyPageState();
 }
 
-class _HieararchyPageState extends State<HieararchyPage> {
+class _HierarchyPageState extends State<HierarchyPage> {
   final graphConfig = BuchheimWalkerConfiguration()
     ..siblingSeparation = (100)
     ..levelSeparation = (150)

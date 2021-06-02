@@ -5,7 +5,11 @@ import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 import 'package:sketch_vision_app/painter/models/pen_type.dart';
 import 'package:sketch_vision_app/painter/widgets/action_icon.dart';
 
+/// {@template pen_action}
+/// An action for [PenType], holding selection selection state.
+/// {@endtemplate}
 class PenAction extends StatelessWidget {
+  /// {@macro pen_action}
   const PenAction({
     Key? key,
     required this.tooltip,
@@ -13,8 +17,13 @@ class PenAction extends StatelessWidget {
     required this.iconData,
   }) : super(key: key);
 
+  /// The [Tooltip] message when hovered.
   final String tooltip;
+
+  /// [PenType] type.
   final PenType actionPenType;
+
+  /// [IconData] of an [Icon].
   final IconData iconData;
 
   @override

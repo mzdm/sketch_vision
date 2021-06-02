@@ -1,14 +1,22 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
+import 'package:sketch_vision_app/hierarchy/view/hierarchy_page.dart';
 
+/// {@template node_rect}
+/// A node widget with rectangular shape in the [HierarchyPage] view.
+/// {@endtemplate}
 class NodeRect extends StatelessWidget {
+  /// {@macro node_rect}
   const NodeRect({
     Key? key,
     this.label,
     this.score,
   }) : super(key: key);
 
+  /// Name of the classified label.
   final String? label;
+
+  /// Score of the classified label.
   final double? score;
 
   bool get bothNull => label == null && score == null;

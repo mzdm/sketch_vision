@@ -1,7 +1,12 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
+import 'package:sketch_vision_app/labeler/widgets/skeleton_list.dart';
 
+/// {@template skeleton_item}
+/// A placeholder widget, a single element of the [SkeletonList] widget.
+/// {@endtemplate}
 class SkeletonItem extends StatelessWidget {
+  /// {@macro skeleton_item}
   const SkeletonItem({
     Key? key,
   }) : super(key: key);

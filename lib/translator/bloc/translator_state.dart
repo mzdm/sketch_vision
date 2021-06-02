@@ -15,7 +15,6 @@ class TranslatorLoading extends TranslatorState {
 }
 
 class TranslatorError extends TranslatorState {
-
   final String message;
 
   TranslatorError(this.message);
@@ -25,7 +24,6 @@ class TranslatorError extends TranslatorState {
 }
 
 class TranslatorSuccess extends TranslatorState {
-
   final BuiltList<ClassResult> translatedClasses;
 
   TranslatorSuccess(this.translatedClasses);

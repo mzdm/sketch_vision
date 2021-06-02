@@ -8,10 +8,8 @@ import 'package:equatable/equatable.dart';
 import 'package:ibm_apis/language_translator.dart';
 import 'package:ibm_apis/visual_recognition.dart'
     show ClassResult, ClassResultBuilder;
-import 'package:sketch_vision_app/app/config.dart';
 
 part 'translator_event.dart';
-
 part 'translator_state.dart';
 
 const _authName = 'IAM';
@@ -55,18 +53,14 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
         BuiltList<Translation>? translations;
 
         // in translation view do not display fake data
-        if (true) {
-          final translateResponse =
-              await translatorApi.getTranslationApi().translate(
-                    version: '2018-05-01',
-                    request: translateReq.build(),
-                  );
-          final TranslationResult? data = translateResponse.data;
-          translations = data?.translations;
-          print(jsonEncode(standardSerializers.serialize(data)));
-        } else {
-          translations = _loadFakeData();
-        }
+        final translateResponse =
+            await translatorApi.getTranslationApi().translate(
+                  version: '2018-05-01',
+                  request: translateReq.build(),
+                );
+        final TranslationResult? data = translateResponse.data;
+        translations = data?.translations;
+        log(jsonEncode(standardSerializers.serialize(data)));
 
         if (translations == null) {
           log('translations: null');
@@ -105,17 +99,17 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
     }
   }
 
-  BuiltList<Translation> _loadFakeData() {
-    final List<dynamic> fakeData = json.decode(_fakeResponse);
-    return BuiltList.from(
-      fakeData.map(
-        (value) => standardSerializers.deserializeWith(
-          Translation.serializer,
-          value,
-        ),
-      ),
-    );
-  }
+  // BuiltList<Translation> _loadFakeData() {
+  //   final List<dynamic> fakeData = json.decode(_fakeResponse);
+  //   return BuiltList.from(
+  //     fakeData.map(
+  //       (value) => standardSerializers.deserializeWith(
+  //         Translation.serializer,
+  //         value,
+  //       ),
+  //     ),
+  //   );
+  // }
 }
 
 const _fakeResponse = '''

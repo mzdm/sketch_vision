@@ -1,3 +1,4 @@
+/// Czech locale strings.
 class Locale_cs {
   static const pageItemHeader1 = 'Vybrat obrázek';
   static const pageItemHeader2 = 'Sketch';
@@ -18,7 +19,6 @@ class Locale_cs {
   static const error = 'Chyba';
   static const note = 'Poznámka';
   static const fake_data = 'Zobrazují se fake data';
-
 
   static const reset = 'Resetovat';
   static const undo = 'Vrátit akci';

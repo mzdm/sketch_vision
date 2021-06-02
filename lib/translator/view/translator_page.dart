@@ -10,7 +10,11 @@ import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 import 'package:sketch_vision_app/translator/bloc/translator_bloc.dart';
 import 'package:sketch_vision_app/translator/view/translator_box.dart';
 
+/// {@template translator_page}
+/// A page which contains [TranslatorBox] and [TranslatorList] views.
+/// {@endtemplate}
 class TranslatorPage extends StatelessWidget {
+  /// {@macro translator_page}
   const TranslatorPage({
     Key? key,
   }) : super(key: key);
@@ -20,10 +24,10 @@ class TranslatorPage extends StatelessWidget {
       builder: (_) {
         return BlocProvider<TranslatorBloc>(
           create: (_) => TranslatorBloc(classes: classes),
-          child: DoublePageContent(
+          child: const DoublePageContent(
             title: Locale_cs.translate,
             contentLeft: TranslatorBox(),
-            contentRight: const LabelerView(page: TranslatorList()),
+            contentRight: LabelerView(page: TranslatorList()),
           ),
         );
       },
@@ -36,7 +40,15 @@ class TranslatorPage extends StatelessWidget {
   }
 }
 
+/// {@template translator_list}
+/// Displays the content based on the state of [TranslatorBloc],
+/// if [TranslatorLoading] then loading [SkeletonList] is displayed,
+/// else if [TranslatorError] then an [InfoBar] message is displayed,
+/// else if [TranslatorSuccess] then the translated label list is displayed,
+/// else the default label list in `English` is displayed.
+/// {@endtemplate}
 class TranslatorList extends StatelessWidget {
+  /// {@macro translator_list}
   const TranslatorList({
     Key? key,
   }) : super(key: key);

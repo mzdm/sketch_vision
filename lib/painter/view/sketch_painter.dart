@@ -4,15 +4,22 @@ import 'dart:ui' as ui;
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sketch_vision_app/painter/models/painter_details.dart';
 
+/// {@template sketch_painter}
+/// The drawing container, where painting on [Canvas] happens.
+/// {@endtemplate}
 class SketchPainter extends CustomPainter {
+  /// {@macro sketch_painter}
   SketchPainter({
     this.pathList = const <PointDetail>[],
   });
 
+  /// List of [PointDetail] to be drew.
   final PathList pathList;
 
+  /// The size of the drawing region.
   Size size = Size.infinite;
 
+  /// Returns the view of the Sketch drawing region as [Uint8List].
   Future<Uint8List?> getImage() async {
     final pictureRecorder = ui.PictureRecorder();
     paint(Canvas(pictureRecorder), size);

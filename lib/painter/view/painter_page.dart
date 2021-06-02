@@ -13,7 +13,12 @@ import 'package:sketch_vision_app/painter/models/painter_details.dart';
 import 'package:sketch_vision_app/painter/models/pen_type.dart';
 import 'package:sketch_vision_app/painter/view/sketch_painter.dart';
 
+/// {@template painter_box}
+/// The drawing container/box, which holds the drew image in [SketchPainter]
+/// and notifies changes to it.
+/// {@endtemplate}
 class PainterBox extends StatefulWidget {
+  /// {@macro painter_box}
   const PainterBox({
     Key? key,
   }) : super(key: key);

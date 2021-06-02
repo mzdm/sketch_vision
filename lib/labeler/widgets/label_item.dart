@@ -1,13 +1,25 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:sketch_vision_app/labeler/widgets/label_list.dart';
 
+/// {@template label_item}
+/// A label widget with name and its score, a single element of
+/// the [LabelList] widget.
+/// {@endtemplate}
 class LabelItem extends StatelessWidget {
+  /// {@macro label_item}
   const LabelItem({
     Key? key,
     required this.name,
     required this.score,
   }) : super(key: key);
 
+  /// The name of the classified result.
   final String name;
+
+  /// The score of the classified result.
+  ///
+  /// Used to display number and an indicator below
+  /// it how much it is out of 1 (100 %).
   final double score;
 
   @override

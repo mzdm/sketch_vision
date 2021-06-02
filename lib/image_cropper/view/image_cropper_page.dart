@@ -8,7 +8,12 @@ import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
+/// {@template image_cropper_page}
+/// Page view where an image gets cropped after the image is picked
+/// from the local storage.
+/// {@endtemplate}
 class ImageCropperPage extends StatefulWidget {
+  /// {@macro image_cropper_page}
   const ImageCropperPage({
     Key? key,
   }) : super(key: key);

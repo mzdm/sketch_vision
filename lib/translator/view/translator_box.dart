@@ -4,8 +4,12 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/translator/bloc/translator_bloc.dart';
 
+/// {@template translator_box}
+/// Displays [Combobox] with [_availableLanguages].
+/// {@endtemplate}
 class TranslatorBox extends StatefulWidget {
-  TranslatorBox({
+  /// {@macro translator_box}
+  const TranslatorBox({
     Key? key,
   }) : super(key: key);
 
@@ -16,6 +20,7 @@ class TranslatorBox extends StatefulWidget {
 class _TranslatorBoxState extends State<TranslatorBox> {
   late final TranslatorBloc translatorBloc;
 
+  /// Selected language code.
   String? comboBoxValue;
 
   @override

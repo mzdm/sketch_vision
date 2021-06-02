@@ -1,15 +1,23 @@
-// ignore_for_file: public_member_api_docs
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:sketch_vision_app/app/helpers/screen_size.dart';
+import 'package:sketch_vision_app/nav_pane/view/nav_pane_page.dart';
 
+/// {@template navigation_body_content}
+/// Wrapper widget for the pages in the [NavigationPanePage], with typical
+/// [PageHeader].
+/// {@endtemplate}
 class NavigationBodyContent extends StatelessWidget {
+  /// {@macro navigation_body_content}
   const NavigationBodyContent({
     Key? key,
     this.title = '',
     required this.content,
   }) : super(key: key);
 
+  /// [PageHeader] title.
   final String title;
+
+  /// Content of the page.
   final Widget content;
 
   @override

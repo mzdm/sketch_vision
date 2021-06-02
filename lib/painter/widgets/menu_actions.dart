@@ -3,9 +3,14 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
+import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/widgets/action_icon.dart';
 
+/// {@template painter_menu_actions}
+/// Top menu of the [PainterMenu], consists of [ActionIcon]s.
+/// {@endtemplate}
 class PainterMenuActions extends StatelessWidget {
+  /// {@macro painter_menu_actions}
   const PainterMenuActions({
     Key? key,
   }) : super(key: key);

@@ -4,11 +4,16 @@ import 'package:built_collection/built_collection.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:ibm_apis/visual_recognition.dart';
 
+/// {@template graph_label_builder}
+/// Builds nodes from the type hierarchies.
+/// {@endtemplate}
 class GraphLabelBuilder {
+  /// {@macro graph_label_builder}
   GraphLabelBuilder({
     required this.classes,
-  }) : this.graph = Graph()..isTree = true;
+  }) : graph = Graph()..isTree = true;
 
+  /// List of classified [ClassResult], which contains labels and its scores.
   final BuiltList<ClassResult> classes;
   final Graph graph;
 

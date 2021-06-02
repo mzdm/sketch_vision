@@ -54,4 +54,3 @@ class PainterSaved extends PainterEvent {
   @override
   List<Object> get props => [];
 }
-

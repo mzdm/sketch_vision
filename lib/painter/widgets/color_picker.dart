@@ -4,7 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 
+/// {@template color_button_picker}
+/// Interactive widget for selecting different [Color]s.
+/// {@endtemplate}
 class ColorButtonPicker extends StatelessWidget {
+  /// {@macro color_button_picker}
   const ColorButtonPicker({
     Key? key,
   }) : super(key: key);

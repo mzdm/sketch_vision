@@ -78,6 +78,7 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
             yield LabelerSuccess(_loadFakeData());
           }
         } else {
+          await Future.delayed(const Duration(milliseconds: 500));
           yield LabelerSuccess(_loadFakeData());
         }
       }

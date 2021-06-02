@@ -1,8 +1,15 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:sketch_vision_app/painter/view/painter_page.dart';
 import 'package:sketch_vision_app/painter/widgets/menu_actions.dart';
 import 'package:sketch_vision_app/painter/widgets/pen_actions.dart';
 
+/// {@template painter_menu}
+/// View on the right side of the [PainterBox].
+///
+/// Contains [PainterMenuActions] and [PainterPenActions].
+/// {@endtemplate}
 class PainterMenu extends StatelessWidget {
+  /// {@macro painter_menu}
   const PainterMenu({
     Key? key,
   }) : super(key: key);

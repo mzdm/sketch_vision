@@ -6,6 +6,9 @@ import 'package:sketch_vision_app/app/bloc_observer.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:window_size/window_size.dart' as desktop;
 
+/// Initial exec starting point.
+///
+/// Defines logging & windows related config.
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (UniversalPlatform.isWindows ||

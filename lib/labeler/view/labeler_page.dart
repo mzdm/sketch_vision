@@ -15,12 +15,20 @@ import 'package:sketch_vision_app/labeler/widgets/label_list.dart';
 import 'package:sketch_vision_app/labeler/widgets/skeleton_list.dart';
 import 'package:sketch_vision_app/translator/view/translator_page.dart';
 
+/// {@template labeler_view}
+/// Displays the typical wrapping widget for showing labels, with
+/// [RoundedRectangleBorder] shape.
+///
+/// Used for showing the content of [LabelerPage], or [PainterMenu] as well.
+/// {@endtemplate}
 class LabelerView extends StatelessWidget {
+  /// {@macro labeler_view}
   const LabelerView({
     Key? key,
     required this.page,
   }) : super(key: key);
 
+  /// A page/content which should be shown inside the view.
   final Widget page;
 
   @override
@@ -37,7 +45,14 @@ class LabelerView extends StatelessWidget {
   }
 }
 
+/// {@template labeler_page}
+/// The content which should be shown inside the [LabelerView], consists
+/// of list of labels and scores,
+/// or placeholders if it is [LabelerLoading] state,
+/// or info dialogs if it is [LabelerError] state.
+/// {@endtemplate}
 class LabelerPage extends StatelessWidget {
+  /// {@macro labeler_page}
   const LabelerPage({
     Key? key,
   }) : super(key: key);
@@ -128,7 +143,7 @@ class LabelerPage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(CarbonIcons.tree_view),
               onPressed: () {
-                Navigator.of(context).push(HieararchyPage.route(classes));
+                Navigator.of(context).push(HierarchyPage.route(classes));
               },
             ),
           ),
