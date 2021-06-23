@@ -1,95 +1,47 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:equatable/equatable.dart';
-import 'package:ibm_apis/language_translator.dart';
-import 'package:ibm_apis/visual_recognition.dart'
-    show ClassResult, ClassResultBuilder;
-import 'package:sketch_vision_app/app/config.dart';
+import 'package:ibm_apis/visual_recognition.dart' show ClassResult;
+import 'package:sketch_vision_app/translator/repositories/translator_repository.dart';
 
 part 'translator_event.dart';
 part 'translator_state.dart';
 
-const _authName = 'IAM';
-const _authUsername = 'apikey';
-
 class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
   TranslatorBloc({
-    required this.classes,
-  })  : translatorApi = IbmLanguageTranslator(
-          interceptors: [
-            BasicAuthInterceptor(),
-          ],
-        ),
-        super(TranslatorInitial()) {
-    translatorApi.setBasicAuth(
-      _authName,
-      _authUsername,
-      EnvConfig.IBM_TRANSLATOR_API_KEY,
-    );
-  }
+    required this.translatorRepository,
+  }) : super(TranslatorInitial());
 
-  final BuiltList<ClassResult> classes;
-  final IbmLanguageTranslator translatorApi;
+  final TranslatorRepository translatorRepository;
 
   @override
   Stream<TranslatorState> mapEventToState(TranslatorEvent event) async* {
     if (event is TranslatorTranslated) {
-      final targetLanguage = event.targetLanguage;
-
-      final toTranslate = BuiltList<String>(
-        classes.map((classResult) => classResult.class_),
-      );
-      final translateReq = TranslateRequestBuilder()
-        ..source_ = 'en'
-        ..target = targetLanguage
-        ..text = toTranslate.toBuilder();
+      yield TranslatorLoading();
 
       try {
-        yield TranslatorLoading();
+        final translateResponse = await translatorRepository.translateClasses(
+          targetLanguage: event.targetLanguage,
+        );
 
-        BuiltList<Translation>? translations;
+        final translationData = translateResponse.data;
+        final translations = translationData?.translations;
 
-        // in translation view do not display fake data
-        final translateResponse =
-            await translatorApi.getTranslationApi().translate(
-                  version: '2018-05-01',
-                  request: translateReq.build(),
-                );
-        final TranslationResult? data = translateResponse.data;
-        translations = data?.translations;
-        log(jsonEncode(standardSerializers.serialize(data)));
-
-        if (translations == null) {
-          log('translations: null');
+        if (translationData == null || translations == null) {
+          throw ('translations: null');
         } else if (translations.isEmpty) {
-          log('translations: empty');
+          throw ('translations: empty');
         } else {
-          log(translations.toString());
-
-          final translatedBuilder = BuiltList<ClassResult>().toBuilder();
-          for (var i = 0; i < translations.length; i++) {
-            final translation = translations.elementAt(i);
-
-            ClassResult? classResult;
-            if (i < classes.length) {
-              classResult = classes.elementAt(i);
-            }
-
-            final classResultBuilder = ClassResultBuilder();
-            log('class: ${translation.translation} --- score: ${classResult?.score ?? 0}');
-            classResultBuilder
-              ..class_ = translation.translation
-              ..score = classResult == null ? 0 : classResult.score;
-
-            translatedBuilder.add(classResultBuilder.build());
-          }
-          yield TranslatorSuccess(translatedBuilder.build());
+          final translatedClasses = translatorRepository.getTranslatedClasses(
+            translationData,
+          );
+          yield TranslatorSuccess(translatedClasses);
         }
       } catch (e) {
+        // in translation view do not display fake data
         log(e.toString());
         if (e is dio.DioError) {
           yield TranslatorError(e.message);
@@ -99,16 +51,4 @@ class TranslatorBloc extends Bloc<TranslatorEvent, TranslatorState> {
       }
     }
   }
-
-// BuiltList<Translation> _loadFakeData() {
-//   final List<dynamic> fakeData = json.decode(_fakeResponse);
-//   return BuiltList.from(
-//     fakeData.map(
-//       (value) => standardSerializers.deserializeWith(
-//         Translation.serializer,
-//         value,
-//       ),
-//     ),
-//   );
-// }
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -9,32 +8,20 @@ import 'package:ibm_apis/visual_recognition.dart';
 import 'package:ibm_apis/visual_recognition/model/classified_images.dart';
 import 'package:sketch_vision_app/app/config.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
-import 'package:sketch_vision_app/labeler/data/fake_response.dart';
+import 'package:sketch_vision_app/labeler/repositories/visual_recognition_repository.dart';
 
 part 'labeler_event.dart';
-part 'labeler_state.dart';
 
-const _authName = 'IAM';
-const _authUsername = 'apikey';
+part 'labeler_state.dart';
 
 class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
   LabelerBloc({
     required this.imagePickerBloc,
-  })  : ibmVisualRecognition = IbmVisualRecognition(
-          interceptors: [
-            BasicAuthInterceptor(),
-          ],
-        ),
-        super(LabelerInitial()) {
-    ibmVisualRecognition.setBasicAuth(
-      _authName,
-      _authUsername,
-      EnvConfig.IBM_VISUAL_RECOGNITION_API_KEY,
-    );
-  }
+    required this.visualRecogRepository,
+  }) : super(LabelerInitial());
 
   final ImagePickerCubit imagePickerBloc;
-  final IbmVisualRecognition ibmVisualRecognition;
+  final VisualRecogRepository visualRecogRepository;
 
   @override
   Stream<LabelerState> mapEventToState(
@@ -46,19 +33,14 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
         yield LabelerLoading();
 
         ClassifiedImages? classifiedImages;
-        final imageBytes = imagePickerState.imageBytes;
 
         if (!AppConfig.testMode) {
+          final imageBytes = imagePickerState.imageBytes;
+
           try {
-            final response =
-                await ibmVisualRecognition.getGeneralApi().classify(
-                      imagesFile: dio.MultipartFile.fromBytes(
-                        imageBytes,
-                        filename: 'example',
-                      ),
-                      version: '2018-03-19',
-                      threshold: 0.0,
-                    );
+            final response = await visualRecogRepository.classifyImage(
+              imageBytes,
+            );
             classifiedImages = response.data;
           } catch (e) {
             log(e.toString());
@@ -75,23 +57,18 @@ class LabelerBloc extends Bloc<LabelerEvent, LabelerState> {
             yield LabelerSuccess(images.first);
           } else {
             yield LabelerEmpty();
-            yield LabelerSuccess(_loadFakeData());
+            yield LabelerSuccess(
+              visualRecogRepository.loadFakeClassificationData(),
+            );
           }
         } else {
+          // load fake data
           await Future.delayed(const Duration(milliseconds: 500));
-          yield LabelerSuccess(_loadFakeData());
+          yield LabelerSuccess(
+            visualRecogRepository.loadFakeClassificationData(),
+          );
         }
       }
     }
-  }
-
-  ClassifiedImage _loadFakeData() {
-    return standardSerializers
-        .deserializeWith(
-          ClassifiedImages.serializer,
-          json.decode(testDataLabels),
-        )!
-        .images
-        .first;
   }
 }

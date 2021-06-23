@@ -8,6 +8,7 @@ import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
 import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
+import 'package:sketch_vision_app/labeler/repositories/visual_recognition_repository.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
@@ -96,6 +97,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
                             contentRight: BlocProvider<LabelerBloc>(
                               create: (_) => LabelerBloc(
                                 imagePickerBloc: imagePickerBloc,
+                                visualRecogRepository: VisualRecogRepository(),
                               ),
                               child: const LabelerView(page: LabelerPage()),
                             ),

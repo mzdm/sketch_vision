@@ -15,9 +15,9 @@ class LabelerLoading extends LabelerState {
 }
 
 class LabelerError extends LabelerState {
-  final String message;
+  const LabelerError(this.message);
 
-  LabelerError(this.message);
+  final String message;
 
   @override
   List<Object> get props => [message];
@@ -29,9 +29,9 @@ class LabelerEmpty extends LabelerState {
 }
 
 class LabelerSuccess extends LabelerState {
-  final ClassifiedImage classifiedImage;
+  const LabelerSuccess(this.classifiedImage);
 
-  LabelerSuccess(this.classifiedImage);
+  final ClassifiedImage classifiedImage;
 
   @override
   List<Object> get props => [classifiedImage];

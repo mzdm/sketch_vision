@@ -8,6 +8,7 @@ import 'package:sketch_vision_app/labeler/widgets/label_list.dart';
 import 'package:sketch_vision_app/labeler/widgets/skeleton_list.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 import 'package:sketch_vision_app/translator/bloc/translator_bloc.dart';
+import 'package:sketch_vision_app/translator/repositories/translator_repository.dart';
 import 'package:sketch_vision_app/translator/view/translator_box.dart';
 
 /// {@template translator_page}
@@ -23,7 +24,11 @@ class TranslatorPage extends StatelessWidget {
     return FluentPageRoute(
       builder: (context) {
         return BlocProvider<TranslatorBloc>(
-          create: (_) => TranslatorBloc(classes: classes),
+          create: (_) => TranslatorBloc(
+            translatorRepository: TranslatorRepository(
+              classes: classes,
+            ),
+          ),
           child: DoublePageContent(
             title: context.l10n.translate,
             contentLeft: const TranslatorBox(),
@@ -78,7 +83,7 @@ class TranslatorList extends StatelessWidget {
           return LabelList(data: state.translatedClasses);
         }
 
-        return LabelList(data: translatorBloc.classes);
+        return LabelList(data: translatorBloc.translatorRepository.classes);
       },
     );
   }
