@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   collection: ^1.15.0 # https://pub.dev/packages/collection
   equatable: ^2.0.2 # https://pub.dev/packages/equatable
   flutter_bloc: ^7.0.0 # https://pub.dev/packages/flutter_bloc
@@ -45,6 +47,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -5,7 +5,7 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:ibm_apis/visual_recognition.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
@@ -25,9 +25,9 @@ class JsonResponseDialog extends StatefulWidget {
 
   static FluentPageRoute route(BuiltList<ClassResult> classes) {
     return FluentPageRoute(
-      builder: (_) {
+      builder: (context) {
         return SinglePageContent(
-          title: Locale_cs.json_response,
+          title: context.l10n.json_response,
           content: JsonResponseDialog(classes: classes),
         );
       },
@@ -68,7 +68,7 @@ class _JsonResponseDialogState extends State<JsonResponseDialog> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Tooltip(
-                  message: Locale_cs.copy,
+                  message: context.l10n.copy,
                   child: IconButton(
                     icon: Icon(
                       CarbonIcons.copy,

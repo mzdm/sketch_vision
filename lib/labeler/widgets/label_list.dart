@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:ibm_apis/visual_recognition.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/labeler/widgets/label_item.dart';
 import 'package:sketch_vision_app/translator/view/translator_page.dart';
@@ -28,11 +28,11 @@ class LabelList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) {
-      return const SizedBox(
+      return SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Center(
-          child: Text(Locale_cs.no_labels),
+          child: Text(context.l10n.no_labels),
         ),
       );
     }

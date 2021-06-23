@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
@@ -100,7 +100,7 @@ class _PainterBoxState extends State<PainterBox> {
                 builder: (_) => BlocProvider.value(
                   value: imagePickerBloc,
                   child: DoublePageContent(
-                    title: Locale_cs.classify,
+                    title: context.l10n.classify,
                     contentLeft: Image.memory(state.imageBytes),
                     contentRight: BlocProvider<LabelerBloc>(
                       create: (_) => LabelerBloc(

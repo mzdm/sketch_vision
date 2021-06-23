@@ -6,7 +6,7 @@ import 'package:fluent_ui/fluent_ui.dart' hide showDialog, Tooltip;
 import 'package:flutter/material.dart' hide Colors, ButtonThemeData, IconButton;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibm_apis/visual_recognition/model/class_result.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/hierarchy/view/hierarchy_page.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/helpers/classifier_sorter.dart';
@@ -72,14 +72,14 @@ class LabelerPage extends StatelessWidget {
               children: [
                 InfoBar(
                   isLong: true,
-                  title: const Text(Locale_cs.error),
+                  title: Text(context.l10n.error),
                   content: Text(state.message),
                   severity: InfoBarSeverity.error,
                 ),
                 const SizedBox(height: 10.0),
-                const InfoBar(
-                  title: Text(Locale_cs.note),
-                  content: Text(Locale_cs.fake_data),
+                InfoBar(
+                  title: Text(context.l10n.note),
+                  content: Text(context.l10n.fake_data),
                   severity: InfoBarSeverity.info,
                 ),
               ],
@@ -119,7 +119,7 @@ class LabelerPage extends StatelessWidget {
         textDirection: TextDirection.rtl,
         children: [
           Tooltip(
-            message: Locale_cs.translate,
+            message: context.l10n.translate,
             child: IconButton(
               icon: const Icon(CarbonIcons.translate),
               onPressed: () {
@@ -129,7 +129,7 @@ class LabelerPage extends StatelessWidget {
           ),
           const SizedBox(width: 5.0),
           Tooltip(
-            message: Locale_cs.json_response,
+            message: context.l10n.json_response,
             child: IconButton(
               icon: const Icon(CarbonIcons.script),
               onPressed: () {
@@ -139,7 +139,7 @@ class LabelerPage extends StatelessWidget {
           ),
           const SizedBox(width: 5.0),
           Tooltip(
-            message: Locale_cs.hierarchy,
+            message: context.l10n.hierarchy,
             child: IconButton(
               icon: const Icon(CarbonIcons.tree_view),
               onPressed: () {
@@ -170,7 +170,7 @@ class LabelerPage extends StatelessWidget {
           },
         ),
       ),
-      child: const Text(Locale_cs.classify),
+      child: Text(context.l10n.classify),
     );
   }
 }

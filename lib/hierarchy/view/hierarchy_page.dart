@@ -4,9 +4,9 @@ import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/material.dart' hide GestureDetector, MouseCursor;
 import 'package:graphview/GraphView.dart';
 import 'package:ibm_apis/visual_recognition.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/hierarchy/helpers/graph_label_builder.dart';
 import 'package:sketch_vision_app/hierarchy/widgets/node_rect.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
 /// {@template hierarchy_page}
@@ -24,9 +24,9 @@ class HierarchyPage extends StatefulWidget {
 
   static FluentPageRoute route(BuiltList<ClassResult> classes) {
     return FluentPageRoute(
-      builder: (_) {
+      builder: (context) {
         return SinglePageContent(
-          title: Locale_cs.hierarchy,
+          title: context.l10n.hierarchy,
           content: HierarchyPage(classes: classes),
         );
       },

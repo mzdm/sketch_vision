@@ -4,8 +4,8 @@ import 'package:crop_your_image/crop_your_image.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide IconButton;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
 /// {@template image_cropper_page}
@@ -22,9 +22,9 @@ class ImageCropperPage extends StatefulWidget {
     return FluentPageRoute(
       builder: (_) => BlocProvider.value(
         value: context.read<ImagePickerCubit>(),
-        child: const SinglePageContent(
-          title: Locale_cs.crop_title,
-          content: ImageCropperPage(),
+        child: SinglePageContent(
+          title: context.l10n.crop_title,
+          content: const ImageCropperPage(),
         ),
       ),
     );
@@ -62,7 +62,7 @@ class _ImageCropperPageState extends State<ImageCropperPage> {
                   imagePickerBloc.cropInited();
                   cropController.crop();
                 },
-                child: const Text(Locale_cs.next),
+                child: Text(context.l10n.next),
               ),
             ),
           ),

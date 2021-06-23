@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 import 'package:sketch_vision_app/painter/models/pen_type.dart';
 
@@ -26,7 +26,7 @@ class ThicknessSlider extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(8),
       child: Tooltip(
-        message: Locale_cs.thickness,
+        message: context.l10n.thickness,
         child: Slider(
           min: 0.0,
           max: 40.0,

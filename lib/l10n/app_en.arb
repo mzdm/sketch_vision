@@ -1,0 +1,102 @@
+{
+    "pageItemHeader1": "Pick an image",
+    "@pageItemHeader1": {
+      "description": "Title is shown on the first page of the navigation menu where an image can get picked from the local storage."
+    },
+    "pageItemHeader2": "Sketch",
+    "@pageItemHeader2": {
+      "description": "Title is shown on the second page of the navigation menu where an image can get drawn."
+    },
+    "pageItemHeader3": "About app",
+    "@pageItemHeader3": {
+      "description": "Title is shown on the latest page of the navigation menu where is shown basic info about the app."
+    },
+    "github_repo": "GitHub repository",
+    "@github_repo": {
+      "description": "A link to the source code on GitHub"
+    },
+    "crop_title": "Crop the image",
+    "@crop_title": {
+      "description": "Title is shown on the page where an image can get cropped."
+    },
+    "classify": "Classify",
+    "@classify": {
+      "description": "A button that starts classifying the image."
+    },
+    "no_labels": "No labels found",
+    "@no_labels": {
+      "description": "Label is shown when there are no labels to describe the image."
+    },
+    "hierarchy": "Type hierarchy",
+    "@hierarchy": {
+      "description": "Shows the type hierarchy of the classified image from the labels."
+    },
+    "json_response": "JSON response",
+    "@json_response": {
+      "description": "Shows the JSON response which was received from the IBM Visual Recognition API when the image got classified."
+    },
+    "copy": "Copy",
+    "@copy": {
+      "description": "Copy all the text from the JSON dialog."
+    },
+    "translate": "Translate",
+    "@translate": {
+      "description": "Shows the translator page where labels can get translated to numerous languages."
+    },
+    "language": "Language",
+    "@language": {
+      "description": "Label is shown in the translator page above the ComboBox where different languages can get selected."
+    },
+    "choose_language": "Choose a language",
+    "@choose_language": {
+      "description": "Label is shown in the translator page inside the ComboBox as a placeholder, where different languages can get selected."
+    },
+    "next": "Continue",
+    "@next": {
+      "description": "Text is shown when a user can progress to the next page."
+    },
+    "error": "Error",
+    "@error": {
+      "description": "Text is shown when there's an error while fetching the API data."
+    },
+    "note": "Note",
+    "@note": {
+      "description": "Text is shown below the error message to indicate the API data state."
+    },
+    "fake_data": "Showing fake data",
+    "@fake_data": {
+      "description": "Text is a part of the note message indicating that the app uses fake data instead of real due to some errors."
+    },
+    "reset": "Reset",
+    "@reset": {
+      "description": "Label of the action which resets the Sketch drawing to the initial state."
+    },
+    "undo": "Undo",
+    "@undo": {
+      "description": "Label of the action which undoes the latest Sketch path."
+    },
+    "pen_eraser": "Eraser",
+    "@pen_eraser": {
+      "description": "Pen type which erases Sketch paths."
+    },
+    "pen_paint_brush": "Paintbrush",
+    "@pen_paint_brush": {
+      "description": "Pen type which draws path on the Sketch."
+    },
+    "thickness": "Thickness",
+    "@thickness": {
+      "description": "Thickness of the drawing path."
+    },
+    "color": "Color",
+    "@color": {
+      "description": "Label in the color picker dialog."
+    },
+    "color_shade": "Color shade",
+    "@color_shade": {
+      "description": "Label, when a color gets selected in a color picker dialog, color shades of that color are shown."
+    },
+    "recently_used": "Recently used",
+    "@recently_used": {
+      "description": "Label of recently used colors in the color picker dialog."
+    }
+}

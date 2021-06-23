@@ -1,7 +1,7 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 
 /// {@template color_button_picker}
@@ -74,9 +74,9 @@ class ColorButtonPicker extends StatelessWidget {
       borderRadius: 4.0,
       spacing: 5.0,
       runSpacing: 5.0,
-      heading: const Text(Locale_cs.color),
-      subheading: const Text(Locale_cs.color_shade),
-      recentColorsSubheading: const Text(Locale_cs.recently_used),
+      heading: Text(context.l10n.color),
+      subheading: Text(context.l10n.color_shade),
+      recentColorsSubheading: Text(context.l10n.recently_used),
       showRecentColors: true,
       pickersEnabled: const <ColorPickerType, bool>{
         ColorPickerType.primary: true,

@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/translator/bloc/translator_bloc.dart';
 import 'package:sketch_vision_app/translator/data/available_languages.dart';
 
@@ -40,30 +41,37 @@ class _TranslatorBoxState extends State<TranslatorBox> {
         child: SizedBox(
           width: 200,
           child: InfoLabel(
-            label: Locale_cs.language,
-            child: Combobox<String>(
-              placeholder: const Text(Locale_cs.choose_language),
-              isExpanded: true,
-              items: availableLanguagesTranslator.entries
-                  .toList()
-                  .map(
-                    (e) => ComboboxItem<String>(
-                      value: e.value,
-                      child: Text(e.key),
-                    ),
-                  )
-                  .toList(),
-              value: comboBoxValue,
-              onChanged: (value) {
-                log('combobox chosen value: ${value.toString()}');
-                if (value != null) {
-                  setState(() {
-                    translatorBloc
-                        .add(TranslatorTranslated(targetLanguage: value));
-                    comboBoxValue = value;
-                  });
-                }
-              },
+            label: context.l10n.language,
+            child: Localizations(
+              delegates: const [
+                GlobalWidgetsLocalizations.delegate,
+                DefaultFluentLocalizations.delegate,
+              ],
+              locale: const Locale('en'),
+              child: Combobox<String>(
+                placeholder: Text(context.l10n.choose_language),
+                isExpanded: true,
+                items: availableLanguagesTranslator.entries
+                    .toList()
+                    .map(
+                      (e) => ComboboxItem<String>(
+                        value: e.value,
+                        child: Text(e.key),
+                      ),
+                    )
+                    .toList(),
+                value: comboBoxValue,
+                onChanged: (value) {
+                  log('combobox chosen value: ${value.toString()}');
+                  if (value != null) {
+                    setState(() {
+                      translatorBloc
+                          .add(TranslatorTranslated(targetLanguage: value));
+                      comboBoxValue = value;
+                    });
+                  }
+                },
+              ),
             ),
           ),
         ),

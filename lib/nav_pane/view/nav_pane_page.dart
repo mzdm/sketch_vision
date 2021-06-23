@@ -2,11 +2,11 @@ import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart' hide Colors, ThemeData;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
 import 'package:sketch_vision_app/app/theme/colors.dart';
 import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
@@ -51,18 +51,18 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
         items: [
           PaneItem(
             icon: const Icon(CarbonIcons.drop_photo_filled),
-            title: Locale_cs.pageItemHeader1,
+            title: context.l10n.pageItemHeader1,
           ),
           PaneItem(
             icon: const Icon(CarbonIcons.paint_brush),
-            title: Locale_cs.pageItemHeader2,
+            title: context.l10n.pageItemHeader2,
           ),
         ],
         footerItems: [
           PaneItemSeparator(),
           PaneItem(
             icon: const Icon(CarbonIcons.information),
-            title: Locale_cs.pageItemHeader3,
+            title: context.l10n.pageItemHeader3,
           ),
         ],
       ),
@@ -72,7 +72,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
   /// Shows the [ImagePickerPage].
   NavigationBodyContent buildImagePickerItem() {
     return NavigationBodyContent(
-      title: Locale_cs.pageItemHeader1,
+      title: context.l10n.pageItemHeader1,
       content: BlocProvider(
         create: (_) => ImagePickerCubit(),
         child: BlocListener<ImagePickerCubit, ImagePickerState>(
@@ -91,7 +91,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
                       builder: (context, state) {
                         if (state is ImagePickerCropFinished) {
                           return DoublePageContent(
-                            title: Locale_cs.classify,
+                            title: context.l10n.classify,
                             contentLeft: Image.memory(state.imageBytes),
                             contentRight: BlocProvider<LabelerBloc>(
                               create: (_) => LabelerBloc(
@@ -121,7 +121,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
   /// Shows the painter page, both [PainterBox] and [PainterMenu].
   NavigationBodyContent buildPainterPageItem() {
     return NavigationBodyContent(
-      title: Locale_cs.pageItemHeader2,
+      title: context.l10n.pageItemHeader2,
       content: MultiBlocProvider(
         providers: [
           BlocProvider<PainterBloc>(create: (_) => PainterBloc()),
@@ -139,18 +139,18 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
   /// Shows [InfoPage].
   NavigationBodyContent buildInfoPageItem() {
     return NavigationBodyContent(
-      title: Locale_cs.pageItemHeader3,
+      title: context.l10n.pageItemHeader3,
       commandBar: GestureDetector(
         onTap: () async {
           if (await canLaunch(repo_url)) {
             await launch(repo_url);
           }
         },
-        child: const MouseRegion(
+        child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Text(
-            Locale_cs.github_repo,
-            style: TextStyle(
+            context.l10n.github_repo,
+            style: const TextStyle(
               color: SketchColors.blue,
               decoration: TextDecoration.underline,
             ),

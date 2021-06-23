@@ -2,7 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ibm_apis/visual_recognition.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/labeler/widgets/label_list.dart';
 import 'package:sketch_vision_app/labeler/widgets/skeleton_list.dart';
@@ -21,13 +21,13 @@ class TranslatorPage extends StatelessWidget {
 
   static FluentPageRoute route(BuiltList<ClassResult> classes) {
     return FluentPageRoute(
-      builder: (_) {
+      builder: (context) {
         return BlocProvider<TranslatorBloc>(
           create: (_) => TranslatorBloc(classes: classes),
-          child: const DoublePageContent(
-            title: Locale_cs.translate,
-            contentLeft: TranslatorBox(),
-            contentRight: LabelerView(page: TranslatorList()),
+          child: DoublePageContent(
+            title: context.l10n.translate,
+            contentLeft: const TranslatorBox(),
+            contentRight: const LabelerView(page: TranslatorList()),
           ),
         );
       },
@@ -67,7 +67,7 @@ class TranslatorList extends StatelessWidget {
           return Center(
             child: InfoBar(
               isLong: true,
-              title: const Text(Locale_cs.error),
+              title: Text(context.l10n.error),
               content: Text(state.message),
               severity: InfoBarSeverity.error,
             ),

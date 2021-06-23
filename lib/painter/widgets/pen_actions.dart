@@ -1,6 +1,6 @@
 import 'package:carbon_icons/carbon_icons.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:sketch_vision_app/app/locale/locale.dart';
+import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/painter/models/pen_type.dart';
 import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/widgets/color_picker.dart';
@@ -25,20 +25,20 @@ class PainterPenActions extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             PenAction(
-              tooltip: Locale_cs.pen_eraser,
+              tooltip: context.l10n.pen_eraser,
               actionPenType: PenType.eraser,
               iconData: CarbonIcons.erase,
             ),
-            SizedBox(width: 5.0),
+            const SizedBox(width: 5.0),
             PenAction(
-              tooltip: Locale_cs.pen_paint_brush,
+              tooltip: context.l10n.pen_paint_brush,
               actionPenType: PenType.paint_brush,
               iconData: CarbonIcons.paint_brush,
             ),
-            SizedBox(width: 10.0),
-            ColorButtonPicker(),
+            const SizedBox(width: 10.0),
+            const ColorButtonPicker(),
           ],
         ),
         const SizedBox(height: 50.0),
