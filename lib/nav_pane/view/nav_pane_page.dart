@@ -7,7 +7,6 @@ import 'package:sketch_vision_app/app/theme/colors.dart';
 import 'package:sketch_vision_app/image_cropper/view/image_cropper_page.dart';
 import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
-import 'package:sketch_vision_app/info/view/info_page.dart';
 import 'package:sketch_vision_app/labeler/bloc/labeler_bloc.dart';
 import 'package:sketch_vision_app/labeler/view/labeler_page.dart';
 import 'package:sketch_vision_app/nav_pane/view/nav_body_content.dart';
@@ -15,6 +14,7 @@ import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 import 'package:sketch_vision_app/painter/bloc/painter_bloc.dart';
 import 'package:sketch_vision_app/painter/view/painter_menu.dart';
 import 'package:sketch_vision_app/painter/view/painter_page.dart';
+import 'package:sketch_vision_app/settings/view/about_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// {@template navigation_pane_page}
