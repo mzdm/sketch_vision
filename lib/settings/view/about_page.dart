@@ -7,9 +7,9 @@ const repo_url = 'https://github.com/mzdm/sketch_vision';
 /// {@template about_app}
 /// Page view where is shown basic info about the app.
 /// {@endtemplate}
-class InfoPage extends StatelessWidget {
+class AboutPage extends StatelessWidget {
   /// {@macro about_app}
-  const InfoPage({
+  const AboutPage({
     Key? key,
   }) : super(key: key);
 

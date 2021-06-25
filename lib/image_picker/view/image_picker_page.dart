@@ -12,15 +12,21 @@ class ImagePickerPage extends StatelessWidget {
   /// {@macro image_picker_page}
   const ImagePickerPage({
     Key? key,
-  }) : super(key: key);
+    FilePickerUtils? filePickerUtils,
+  })  : filePickerUtils = filePickerUtils ?? const FilePickerUtils(),
+        super(key: key);
+
+  @visibleForTesting
+  final FilePickerUtils filePickerUtils;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Button(
+        key: const Key('imagePickerPage_filePickButton'),
         onPressed: () async {
           final imagePickerBloc = context.read<ImagePickerCubit>()..reset();
-          final pickedImage = await pickImage();
+          final pickedImage = await filePickerUtils.pickImage();
           if (pickedImage != null) {
             imagePickerBloc.pick(pickedImage);
           }

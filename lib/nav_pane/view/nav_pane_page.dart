@@ -138,7 +138,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
     );
   }
 
-  /// Shows [InfoPage].
+  /// Shows [AboutPage].
   NavigationBodyContent buildInfoPageItem() {
     return NavigationBodyContent(
       title: context.l10n.pageItemHeader3,
@@ -159,7 +159,7 @@ class _NavigationPanePageState extends State<NavigationPanePage> {
           ),
         ),
       ),
-      content: const InfoPage(),
+      content: const AboutPage(),
     );
   }
 }
