@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sketch_vision_app/settings/view/about_page.dart';
 
-import '../../../test/test_helpers/helpers.dart';
+import '../../../test/test_helpers/test_helpers.dart';
 
 void main() {
   group('InfoPage', () {

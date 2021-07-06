@@ -8,43 +8,51 @@ import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/l10n/helpers/locale.dart';
 import 'package:sketch_vision_app/nav_pane/view/result_content.dart';
 
-/// {@template image_cropper_page}
-/// Page view where an image gets cropped after the image is picked
-/// from the local storage.
-/// {@endtemplate}
-class ImageCropperPage extends StatefulWidget {
-  /// {@macro image_cropper_page}
-  const ImageCropperPage({
-    Key? key,
-  }) : super(key: key);
+class ImageCropperPage extends StatelessWidget {
+  const ImageCropperPage({Key? key}) : super(key: key);
 
   static FluentPageRoute route(BuildContext context) {
     return FluentPageRoute(
       builder: (_) => BlocProvider.value(
         value: context.read<ImagePickerCubit>(),
-        child: SinglePageContent(
-          title: context.l10n.crop_title,
-          content: const ImageCropperPage(),
-        ),
+        child: const ImageCropperPage(),
       ),
     );
   }
 
   @override
-  _ImageCropperPageState createState() => _ImageCropperPageState();
+  Widget build(BuildContext context) {
+    return SinglePageContent(
+      title: context.l10n.crop_title,
+      content: const ImageCropperView(),
+    );
+  }
 }
 
-class _ImageCropperPageState extends State<ImageCropperPage> {
+
+/// {@template image_cropper_page}
+/// Page view where an image gets cropped after the image is picked
+/// from the local storage.
+/// {@endtemplate}
+class ImageCropperView extends StatefulWidget {
+  /// {@macro image_cropper_page}
+  const ImageCropperView({Key? key}) : super(key: key);
+
+  @override
+  _ImageCropperViewState createState() => _ImageCropperViewState();
+}
+
+class _ImageCropperViewState extends State<ImageCropperView> {
   final cropController = CropController();
 
   late Uint8List imageBytes;
-  late ImagePickerCubit imagePickerBloc;
+  late ImagePickerCubit imagePickerCubit;
 
   @override
   void initState() {
     super.initState();
-    imagePickerBloc = context.read<ImagePickerCubit>();
-    imageBytes = (imagePickerBloc.state as ImagePickerPicked).imageBytes;
+    imagePickerCubit = context.read<ImagePickerCubit>();
+    imageBytes = (imagePickerCubit.state as ImagePickerPicked).imageBytes;
   }
 
   @override
@@ -58,8 +66,9 @@ class _ImageCropperPageState extends State<ImageCropperPage> {
             child: Align(
               alignment: AlignmentDirectional.centerEnd,
               child: Button(
+                key: const Key('imageCropperView_cropButton'),
                 onPressed: () {
-                  imagePickerBloc.cropInited();
+                  imagePickerCubit.cropInited();
                   cropController.crop();
                 },
                 child: Text(context.l10n.next),
@@ -76,7 +85,7 @@ class _ImageCropperPageState extends State<ImageCropperPage> {
               initialSize: 0.75,
               image: imageBytes,
               controller: cropController,
-              onCropped: (image) => imagePickerBloc.crop(image),
+              onCropped: (image) => imagePickerCubit.crop(image),
             ),
           ),
         ),

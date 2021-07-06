@@ -19,6 +19,7 @@ jobs:
         with:
           channel: 'beta'
       - run: flutter pub get
+      - run: flutter test
       - run: flutter build web --dart-define=FLUTTER_WEB_USE_SKIA=true
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

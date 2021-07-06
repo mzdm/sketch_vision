@@ -10,7 +10,7 @@ import 'package:sketch_vision_app/image_picker/bloc/image_picker_cubit.dart';
 import 'package:sketch_vision_app/image_picker/utils/image_utils.dart';
 import 'package:sketch_vision_app/image_picker/view/image_picker_page.dart';
 
-import '../../../test/test_helpers/helpers.dart';
+import '../../../test/test_helpers/test_helpers.dart';
 
 class MockFilePickerUtils extends Mock implements FilePickerUtils {}
 
