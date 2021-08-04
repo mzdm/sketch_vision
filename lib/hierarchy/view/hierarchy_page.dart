@@ -79,26 +79,30 @@ class _HierarchyPageState extends State<HierarchyPage> {
             ..strokeWidth = 1
             ..style = PaintingStyle.stroke,
           builder: (node) {
-            final id = node.key?.value;
-            if (id == null || id is! int) {
-              return const SizedBox();
-            }
-
-            var findLabel = usedNodesWidget.keys.firstWhereOrNull(
-              (label) => usedNodesWidget[label] == id,
-            );
-            final findScore = classes.toList().firstWhereOrNull(
-                  (classResult) => classResult.class_ == findLabel,
-                );
-
-            // root
-            if (id == 0) {
-              findLabel = 'root';
-            }
-
+            // final id = node.key?.value;
+            // if (id == null || id is! int) {
+            //   return const SizedBox();
+            // }
+            //
+            // var findLabel = usedNodesWidget.keys.firstWhereOrNull(
+            //   (label) => usedNodesWidget[label] == id,
+            // );
+            // final findScore = classes.toList().firstWhereOrNull(
+            //       (classResult) => classResult.class_ == findLabel,
+            //     );
+            //
+            // // root
+            // if (id == 0) {
+            //   findLabel = 'root';
+            // }
+            //
+            // return NodeRect(
+            //   label: findLabel,
+            //   score: findScore?.score,
+            // );
             return NodeRect(
-              label: findLabel,
-              score: findScore?.score,
+              label: 'test',
+              score: -1,
             );
           },
         ),
